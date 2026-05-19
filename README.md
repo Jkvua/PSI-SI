@@ -44,7 +44,7 @@ Modelagem geral da ferramenta e interação entre módulos.
 
 <div align="center">
 
-<img src="/images/Diagrama PSI I.png" width="1000"/>
+<img src="/images/Diagrama PSI I.png" width="1400"/>
 
 </div>
 
