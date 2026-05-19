@@ -42,7 +42,11 @@ Modelagem geral da ferramenta e interação entre módulos.
 
 ### 🚀 Fluxo do Sistema
 
-🚧 Em desenvolvimento
+<div align="center">
+
+<img src="./docs/images/fluxograma.png" width="1000"/>
+
+</div>
 
 ### 🔄 Diagrama de Casos de Uso
 
