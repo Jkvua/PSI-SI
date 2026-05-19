@@ -40,6 +40,10 @@ A aplicação permite registrar auditorias, avaliar controles, armazenar histór
 
 Modelagem geral da ferramenta e interação entre módulos.
 
+### 🚀 Fluxo do Sistema
+
+🚧 Em desenvolvimento
+
 ### 🔄 Diagrama de Casos de Uso
 
 Fluxos principais:
