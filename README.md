@@ -63,17 +63,21 @@ Para cada controle da ISO 27002 o auditor poderá selecionar um dos seguintes st
 
 Gerado por tipo de controle:
 
-Organizacional
-Físico
-Tecnológico
-Pessoas
+- Organizacional
+- Físico
+- Tecnológico
+- Pessoas
 
 ### 📚 Relatório Completo
 
 Inclui:
 
-Todos os controles avaliados
-Situação de conformidade
-Observações
-Comparativos históricos
-Data das auditorias
+- Todos os controles avaliados
+- Situação de conformidade
+- Observações
+- Comparativos históricos
+- Data das auditorias
+
+### 🔐 Licença
+
+Este projeto é distribuído sob a licença Creative Commons Zero v1.0 Universal. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
