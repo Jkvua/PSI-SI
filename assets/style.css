@@ -1,0 +1,15 @@
+:root {
+    --primary-color: #bac8b1;
+    --secondary-color: #f0f0f0;
+}
+
+.stButton > button {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.stProgress > div > div > div {
+    background-color: var(--primary-color);
+}
