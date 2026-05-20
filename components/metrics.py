@@ -15,7 +15,7 @@ def render_metrics_auditoria(stats: dict, pct: int):
     c1.metric("✅ Conformes", stats.get("Conforme", 0))
     c2.metric("❌ Não Conformes", stats.get("Não Conforme", 0))
     c3.metric("🔄 Em Andamento", stats.get("Em Andamento", 0))
-    c4.metric("⬜ Não Aplica", stats.get("Não Aplica", 0))
+    c4.metric("🙅 Não Aplica", stats.get("Não Aplica", 0))
     c5.metric("🎯 % Conformidade", f"{pct}%")
     st.progress(min(pct / 100, 1.0))
 

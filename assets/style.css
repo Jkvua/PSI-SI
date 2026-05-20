@@ -58,9 +58,8 @@
     margin-top: 8px;
 }
 
-
 .norma-card {
-    background-color: #f0f9ff; /* azul pastel */
+    background-color: #f0f9ff;
     padding: 16px;
     border-radius: 8px;
     min-height: 250px;
@@ -80,13 +79,40 @@
 }
 .norma-card-cols div {
     flex: 1;
-    font-weight: bold; /* deixa os grupos em negrito */
+    font-weight: bold;
 }
 
-/* Seleciona cada métrica pelo índice da coluna */
 div[data-testid="stMetric"]:nth-child(1) {
     background-color: #f0f9ff;
     border-radius: 8px;
     padding: 12px;
+    color: white;
+}
+
+/* botão nova auditoria(actions_buttons)*/
+
+/* botão salvar */
+div.stButton > button[kind="primary"] {
+    background-color: var(--verde-principal);
+    color: rgb(17, 16, 16);
+    transition: background-color 0.3s ease;
+    border: #bac8b1 solid 1px;
+}
+
+div.stButton > button[kind="primary"]:hover {
+    background-color: blue;
+    color: black;
+}
+
+/* botão limpar */
+div.stButton > button:not([kind="primary"]) {
+    background-color: var(--vermelho-alerta);
+    color: rgb(24, 23, 23);
+    transition: background-color 0.3s ease;
+    border: #bac8b1 solid 1px;;
+}
+
+div.stButton > button:not([kind="primary"]):hover {
+    background-color: red;
     color: white;
 }
