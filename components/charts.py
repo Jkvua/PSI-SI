@@ -1,0 +1,219 @@
+import plotly.graph_objects as go
+import re
+
+def load_css_vars(path="assets/style.css"):
+    with open(path) as f:
+        css = f.read()
+    return dict(re.findall(r"--([\w-]+):\s*([^;]+);", css))
+
+STYLE = load_css_vars()
+
+COLORS = {
+    "Conforme": STYLE.get("color-conforme"),
+    "Não Conforme": STYLE.get("color-nao-conforme"),
+    "Não Aplica": STYLE.get("color-nao-aplica"),
+    "Em Andamento": STYLE.get("color-em-andamento"),
+}
+DARK_BG = STYLE["bg-dark"]
+CARD_BG = STYLE["dg-card"]
+TEXT = STYLE["text-color"]
+GRID = STYLE["grid-color"]
+
+def _layout(fig, title, height=None, margin=None):
+    
+    h = height or int(STYLE.get("chart-height", 320))
+    m = margin or dict(
+        t=int(STYLE.get("chart-margin-top", 50)),
+        b=int(STYLE.get("chart-margin-bottom", 20)),
+        l=int(STYLE.get("chart-margin-left", 20)),
+        r=int(STYLE.get("chart-margin-right", 20))
+    )
+    fig.update_layout(
+        title=dict(text=title, font=dict(size=16,color=TEXT)),
+        paper_bgcolor=DARK_BG, plot_bgcolor=DARK_BG, font=dict(color=TEXT),
+        legend=dict(font=dict(color=TEXT), bgcolor=CARD_BG, 
+                    bordercolor="rgba(100,180,255,0.15)"),
+        margin=m, height=height,
+    )
+    return fig
+
+def chart_pizza_total(stats, title="Conformidade Total"):
+    labels = [k for k,v in stats.items() if v>0]
+    values = [v for v in stats.values() if v>0]
+    colors = [COLORS.get(l,"#888") for l in labels]
+    total = sum(stats.values())
+    pct = round(stats.get("Conforme",0)/total*100,1) if total else 0
+
+    fig = go.Figure(go.Pie(
+        labels=labels, values=values,
+        marker=dict(colors=colors, line=dict(color=DARK_BG,width=2)),
+        hole=0.55, textinfo="percent+label",
+        textfont=dict(size=13,color=TEXT),
+        hovertemplate="<b>%{label}</b><br>%{value} (%{percent})<extra></extra>",
+    ))
+
+    fig.add_annotation(text=f"<b>{pct}%</b><br><span style='font-size:11px'>Conformidade</span>",
+                       x=0.5,y=0.5,showarrow=False,font=dict(size=18,color=TEXT),align="center")
+    
+    return _layout(fig, title, 320)
+
+def chart_barras_grupos(grupos_stats, title="Conformidade por Grupo de Controles"):
+    nomes, conf, nc, ea, na = [], [], [], [], []
+    for g,s in grupos_stats.items():
+        nomes.append(g.split(" - ")[0])
+        conf.append(s.get("Conforme",0)); 
+        nc.append(s.get("Não Conforme",0))
+        ea.append(s.get("Em Andamento",0)); 
+        na.append(s.get("Não Aplica",0))
+    
+    fig = go.Figure()
+    for label, vals, color in [
+        ("Conforme", conf, COLORS["Conforme"]),
+        ("Não Conforme", nc, COLORS["Não Conforme"]),
+        ("Em Andamento", ea, COLORS["Em Andamento"]),
+        ("Não Aplica", na, COLORS["Não Aplica"])
+    ]:
+        
+        fig.add_trace(go.Bar(
+            name=label, x=nomes, y=vals,
+            marker_color=color,
+            text=vals, textposition="inside",
+            hovertemplate="<b>%{x}</b><br>%{y} "+label+"<extra></extra>",
+        ))
+
+    fig.update_layout(
+        barmode="stack",
+        xaxis=dict(gridcolor=GRID,color=TEXT),
+        yaxis=dict(gridcolor=GRID,color=TEXT),
+        height = int(STYLE.get("chart-height", 320)),
+        margin = dict(t=50, b=90, l=40, r=10)
+    )
+    return _layout(fig, title)
+
+def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", ordenar=True):
+    nomes, pcts, absolutos =[], [], []
+    for g,s in grupos_stats.items():
+        total = sum(s.values()) 
+        ap = total - s.get("Não Aplica",0)
+        conformes = s.get("Conforme", 0)
+        pct = round(conformes/ap*100, 1) if ap else 0
+        nomes.append(g.split(" - ")[0])
+        pcts.append(pct)
+        absolutos.append(f"{conformes}/{ap}")
+
+    dados = [{"nome": n, "pct": p, "abs": a} for n, p, a in zip(nomes, pcts, absolutos)] 
+
+    if ordenar:
+        dados = sorted(dados, key=lambda x: x["pct"], reverse=True)
+    
+    nomes = [d["nome"] for d in dados]
+    pcts = [d["pct"] for d in dados]
+    absolutos = [d["abs"] for d in dados]
+
+    cores = [COLORS["Conforme"] 
+             if p>=70 else COLORS["Em Andamento"] 
+             if p>=40 else COLORS["Não Conforme"] for p in pcts]
+
+
+    fig=go.Figure(go.Bar(
+        x=pcts,y=nomes,orientation='h',
+        marker=dict(color=cores,line=dict(color=DARK_BG,width=1)),
+        text=[f"{p}% ({a})" for p,a in zip(pcts, absolutos)],
+        textposition='inside',
+        textfont=dict(color="white",size=12),
+        hovertemplate="<b>%{y}</b><br>%{x}%<extra></extra>"
+    ))
+    
+    fig.add_vline(x=70,line_dash="dash",line_color="rgba(255,255,255,0.3)",
+                  annotation_text="Meta 70%",annotation_font_color=TEXT)
+    
+    fig.update_layout(
+        xaxis=dict(gridcolor=GRID,color=TEXT,range=[0,105]),
+        yaxis=dict(gridcolor=GRID,color=TEXT),
+        height = max(300, len(nomes)*42+80),
+        margin = dict(t=50, b=20, l=10, r=70)
+    )
+    
+    return _layout(fig, title)
+
+def chart_evolucao(historico, norma, ordenar=True):
+    if ordenar:
+        historico = sorted(historico, key=lambda x: x["data_auditoria"])
+
+    datas, pcts, absolutos = [], [], []    
+    for h in historico:
+        s = h["stats_total"]
+        total = sum(s.values())
+        conformes = s.get("Conforme", 0)
+        pct = round(conformes/total*100,1) if total else 0
+        datas.append(h["data_auditoria"])
+        pcts.append(pct)
+        absolutos.append(f"{conformes}/{total}")    
+    
+    fig=go.Figure(go.Scatter(
+        x=datas, y=pcts, mode="lines+markers+text",
+        line=dict(color=COLORS["Conforme"], width=3),
+        marker=dict(color="#64b4ff", size=10, line=dict(color=COLORS["Conforme"], width=2)),
+        text=[f"{p}% ({a})" for p, a in zip(pcts, absolutos)],
+        textposition="top center",
+        textfont=dict(color=TEXT,size=12),
+        fill="tozeroy",fillcolor="rgba(26,111,212,0.15)",
+        hovertemplate="<b>%{x}</b><br>%{y}%<extra></extra>"))
+    
+    fig.add_hline(y=70,line_dash="dash",line_color="rgba(255,255,255,0.3)",
+                  annotation_text="Meta 70%",annotation_font_color=TEXT)
+    
+    fig.update_layout(xaxis=dict(gridcolor=GRID,color=TEXT),
+                      yaxis=dict(gridcolor=GRID,color=TEXT,range=[0,105]),
+                      height=int(STYLE.get("chart-height", 320)),
+                      margin=dict(t=50,b=30,l=50,r=20)
+    )
+
+    return _layout(fig, f"Evolução da Conformidade — {norma}")
+
+def chart_comparativo(aud1, aud2, gs1, gs2, ordenar=False):
+    dados = []
+    for g,s in gs1.items():
+        nome = g.split(" - ")[0]
+        a1 = sum(s.values()) - s.get("Não Aplica", 0)
+        s2 = gs2.get(g,{})
+        a2 =sum(s2.values()) - s2.get("Não Aplica",0)
+        p1 = round(s.get("Conforme",0)/a1*100,1) if a1 else 0
+        p2 = round(s2.get("Conforme",0)/a2*100,1) if a2 else 0
+        dados.append({"nome": nome, "p1": p1, "p2": p2,
+                      "abs1": f"{s.get('Conforme',0)}/{a1}", 
+                      "abs2": f"{s2.get('Conforme',0)}/{a2}"
+                    })
+
+    if ordenar:
+        dados = sorted(dados, key=lambda d: abs(d["p1"]-d["p2"]), reverse=True)
+
+    nomes = [d["nome"] for d in dados]
+    p1 = [d["p1"] for d in dados]
+    p2 = [d["p2"] for d in dados]
+    abs1 = [d["abs1"] for d in dados]
+    abs2 = [d["abs2"] for d in dados]
+
+    fig=go.Figure()
+    fig.add_trace(go.Bar(
+        name = aud1["data_auditoria"], x=nomes, y=p1,
+        marker_color=COLORS["Conforme"], opacity = 0.9),
+        text=[f"{p}% ({a})" for p,a in zip(p1, abs1)], textposition="outside",
+        hovertemplate="<b>%{x}</b><br>%{y}% (%{text})<extra></extra>"
+    )
+
+    fig.add_trace(go.Bar(
+        name=aud2["data_auditoria"], x=nomes, y=p2,
+        marker_color=COLORS["Conforme"], opacity=0.9),
+        text=[f"{p}% ({a})" for p,a in zip(p2, abs2)], textposition="outside",
+        hovertemplate="<b>%{x}</b><br>%{y}% (%{text})<extra></extra>"
+    )
+    fig.update_layout(
+        barmode="group",
+        xaxis=dict(gridcolor=GRID, color=TEXT),
+        yaxis=dict(gridcolor=GRID, color=TEXT,range=[0,105], title="% Conformidade"),
+        height = int(STYLE.get("chart-height", 380)),
+        margin = dict(t=50, b=90, l=50, r=10)
+    )
+    
+    return _layout(fig,"Comparativo entre Auditorias")

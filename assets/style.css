@@ -1,6 +1,21 @@
 :root {
     --primary-color: #bac8b1;
     --secondary-color: #f0f0f0;
+    --color-conforme: #22c55e;
+    --color-nao-conforme: #ef4444;
+    --color-em-andamento: #f59e0b;
+    --color-nao-aplica: #64748b;
+
+    --bg-dark: #0f1923;
+    --dg-card: #1a2332;
+    --text-color: #e8f4f8;
+    --grid-color: rgba(100,180,255,0.08);
+
+    --chart-height: 320;
+    --chart-margin-top: 50;
+    --chart-margin-bottom: 20;
+    --chart-margin-left: 20;
+    --chart-margin-right: 20;
 }
 
 .stButton > button {
@@ -12,4 +27,15 @@
 
 .stProgress > div > div > div {
     background-color: var(--primary-color);
+}
+
+.main-header h1{
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.main-header p {
+    color: #7f8c8d;
+    font-size: 16px;
 }
