@@ -39,3 +39,54 @@
     color: #7f8c8d;
     font-size: 16px;
 }
+
+/* home */
+.main-header {
+    background: linear-gradient(90deg, #f0f9ff, #cfe1ee);
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+.main-header h1 {
+    color: #065f46;
+    font-size: 32px;
+    margin: 0;
+}
+.main-header p {
+    color: #374151;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+
+.norma-card {
+    background-color: #f0f9ff; /* azul pastel */
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.norma-card h3 {
+    margin-top: 0;
+    color: #1e3a8a;
+}
+.norma-card-cols {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.norma-card-cols div {
+    flex: 1;
+    font-weight: bold; /* deixa os grupos em negrito */
+}
+
+/* Seleciona cada métrica pelo índice da coluna */
+div[data-testid="stMetric"]:nth-child(1) {
+    background-color: #f0f9ff;
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+}

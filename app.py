@@ -20,7 +20,6 @@ with open("assets/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 auditorias = load_auditorias()
-pagina = render_sidebar()
 
 routes = {
     "🏠 Home": lambda: render_home(auditorias),
@@ -32,4 +31,5 @@ routes = {
     "🗑️ Gerenciar Auditorias": lambda: render_gerencias_auditoria()
 }
 
+pagina = st.query_params.get("page", render_sidebar())
 routes[pagina]()
