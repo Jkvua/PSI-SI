@@ -18,3 +18,4 @@ def render_metrics_status(stats: dict, pct: int):
     c4.metric("🙅 Não Aplica", stats.get("Não Aplica", 0))
     c5.metric("🎯 % Conformidade", f"{pct}%")
     st.progress(min(pct / 100, 1.0))
+

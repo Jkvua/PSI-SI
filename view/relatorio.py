@@ -2,12 +2,19 @@ import streamlit as st
 import pandas as pd
 from storage.auditorias import load_auditorias
 from components.header import render_header
-from components.charts import chart_pizza_total, chart_percentual_grupos, chart_comparativo
+from filters.relatorio import render_filtro_relatorio
+from components.metrics import render_metrics_status
+from components.relatorio import render_graficos, render_nao_conformidades, render_header_relatorio, render_controles, render_mostra_comparativo
 from data.controles_27001_27002 import CONTROLES_27001_27002
 from data.controles_27701 import CONTROLES_27701
 from logic.utils import calcular_stats_total, percentual_conformidade, calcular_stats_grupos
 
 def render_relatorio():
+    render_header(
+        titulo="Relatorio de Conformidade",
+        subtitulo="Relatório de conformidade das auditorias - exporte o PDF.",
+        emoji="📄"
+    )
     auditorias = load_auditorias()
     if not auditorias:
         st.warning("Nenhuma auditoria encontrada.")
@@ -20,6 +27,7 @@ def render_relatorio():
 
     sel = st.selectbox("Selecione a auditoria", list(opcoes_aud.keys()))
     aud = opcoes_aud[sel]
+
     norma = aud.get("norma","27001")
     controles = CONTROLES_27001_27002 if norma == "27001" else CONTROLES_27701
     respostas = aud.get("respostas", {})
@@ -27,108 +35,25 @@ def render_relatorio():
     grupos_stats = aud.get("stats_grupos") or calcular_stats_grupos(respostas, norma)
     pct = percentual_conformidade(stats)
 
-    render_header(f"Relatório de Conformidade - {aud.get('empresa','')} ({aud.get('data_auditoria','')})",
-                    "Preencha os detalhes e selecione os controles aplicáveis", "📄"
-                )
+    render_header_relatorio(aud, pct)
+
+    tipo_rel, comparativo, grupo_sel = render_filtro_relatorio(controles)
+    
+    render_metrics_status(stats, pct)
+    render_graficos(stats, grupos_stats)
 
 
-    col_t1, col_t2 = st.columns(2)
-    tipo_rel = col_t1.radio("Tipo de Relatório", ["Completo", "Parcial por Grupo"])
-    comparativo = col_t2.checkbox("Incluir comparativo com auditoria anterior")
-
-    grupo_sel = None
-    if tipo_rel == "Parcial por Grupo":
-        grupo_sel = st.selectbox("Selecione o grupo", list(controles.keys()))
-
-    st.markdown("---")
-
-    # ── Cabeçalho do relatório na tela ────────────────────────────────────────
-    st.markdown(f"""
-## 📋 Relatório de Conformidade — {aud.get('norma')}
-| Campo | Valor |
-|---|---|
-| **Empresa** | {aud.get('empresa','—')} |
-| **Auditor** | {aud.get('auditor','—')} |
-| **Data** | {aud.get('data_auditoria','—')} |
-| **Cenário** | {aud.get('cenario','—')} |
-| **Conformidade Geral** | **{pct}%** |
-""")
-
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("✅ Conformes", stats.get("Conforme",0))
-    c2.metric("❌ Não Conformes", stats.get("Não Conforme",0))
-    c3.metric("🔄 Em Andamento", stats.get("Em Andamento",0))
-    c4.metric("⬜ Não Aplica", stats.get("Não Aplica",0))
-    st.progress(min(pct / 100, 1.0))
-
-    col_v1, col_v2 = st.columns([1, 2])
-    with col_v1:
-        st.plotly_chart(chart_pizza_total(stats), use_container_width=True)
-    with col_v2:
-        st.plotly_chart(chart_percentual_grupos(grupos_stats), use_container_width=True)
-
-    # ── Controles na tela ─────────────────────────────────────────────────────
     grupos_exibir = (
         {grupo_sel: controles[grupo_sel]}
         if tipo_rel == "Parcial por Grupo" and grupo_sel
         else controles
     )
 
-    for grupo, lista in grupos_exibir.items():
-        gs = grupos_stats.get(grupo, {})
-        ap = sum(gs.values()) - gs.get("Não Aplica",0)
-        pg = round(gs.get("Conforme",0)/ap*100,1) if ap else 0
-        st.markdown(f"### {grupo}")
-        st.caption(f"Conformidade: **{pg}%** | {gs.get('Conforme',0)} conformes / {ap} aplicáveis")
-        rows = []
-        for codigo, nome in lista:
-            v = respostas.get(codigo, {})
-            status = v.get("status", "Não Aplica")
-            em_and = v.get("em_andamento", False)
-            if status == "Conforme":
-                icone = "✅ Conforme"
-            elif status == "Não Conforme" and em_and:
-                icone = "🔄 Em Andamento"
-            elif status == "Não Conforme":
-                icone = "❌ Não Conforme"
-            else:
-                icone = "⬜ Não Aplica"
-            rows.append({"Código": codigo, "Controle": nome, "Status": icone})
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+    render_controles(grupos_exibir, grupos_stats, respostas)
+    render_nao_conformidades(grupos_exibir, respostas)
 
-    # ── Não conformidades na tela ─────────────────────────────────────────────
-    st.markdown("---")
-    st.markdown("### ⚠️ Não Conformidades Identificadas")
-    nc_rows = []
-    for grupo, lista in grupos_exibir.items():
-        for codigo, nome in lista:
-            v = respostas.get(codigo, {})
-            if v.get("status") == "Não Conforme":
-                nc_rows.append({
-                    "Grupo": grupo.split(" - ")[0],
-                    "Código": codigo,
-                    "Controle": nome,
-                    "Em Andamento": "🔄 Sim" if v.get("em_andamento") else "❌ Não"
-                })
-    if nc_rows:
-        st.dataframe(pd.DataFrame(nc_rows), use_container_width=True, hide_index=True)
-    else:
-        st.success("🎉 Nenhuma não conformidade no escopo selecionado!")
-
-    # ── Comparativo na tela ───────────────────────────────────────────────────
     if comparativo:
-        auds_ant_lista = sorted(
-            [a for a in auditorias if a.get("norma")==norma and a.get("id")!=aud.get("id")],
-            key=lambda x: x.get("data_auditoria",""), reverse=True
-        )
-        if auds_ant_lista:
-            aud_ant = auds_ant_lista[0]
-            st.markdown("---")
-            st.markdown(f"### 📈 Comparativo com auditoria de {aud_ant.get('data_auditoria')}")
-            gs_ant = aud_ant.get("stats_grupos") or calcular_stats_grupos(aud_ant.get("respostas",{}), norma)
-            st.plotly_chart(chart_comparativo(aud_ant, aud, gs_ant, grupos_stats), use_container_width=True)
-        else:
-            st.info("Nenhuma auditoria anterior disponível para comparação.")
+        render_mostra_comparativo(aud, auditorias, [norma], grupos_stats)
 
     # # ── EXPORTAR PDF ──────────────────────────────────────────────────────────
     # st.markdown("---")
