@@ -28,7 +28,7 @@ routes = {
     "📊 Dashboard": lambda: render_dashboard(),
     "📈 Comparativo":lambda: render_comparativo(),
     "📄 Relatórios": lambda: render_relatorio(),
-    "🗑️ Gerenciar Auditorias": lambda: render_gerencias_auditoria()
+    "🗂️ Gerenciar Auditorias": lambda: render_gerencias_auditoria()
 }
 
 pagina = st.query_params.get("page", render_sidebar())

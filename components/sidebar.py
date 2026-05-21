@@ -16,7 +16,7 @@ def render_sidebar():
             "📊 Dashboard",
             "📈 Comparativo",
             "📄 Relatórios",
-            "🗑️ Gerenciar Auditorias",
+            "🗂️ Gerenciar Auditorias",
         ])
 
         st.markdown("---")
