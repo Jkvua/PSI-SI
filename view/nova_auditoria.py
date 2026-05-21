@@ -1,12 +1,12 @@
 import streamlit as st
 from datetime import date
 from components.header import render_header
-from components.metrics import render_metrics_auditoria
+from components.metrics import render_metrics_status
 from components.actions_buttons import render_auditoria_actions_buttons
 from filters.nova_auditoria import render_filtro_nova_auditoria
 from data.controles_27001_27002 import CONTROLES_27001_27002
 from data.controles_27701 import CONTROLES_27701
-from logic.utils import calcular_stats_total, percentual_conformidade, calcular_stats_grupos
+from logic.utils import calcular_stats_total, percentual_conformidade
 from storage.auditorias import save_auditoria
 
 
@@ -51,7 +51,7 @@ def render_nova_auditoria(pagina:str):
     
     stats = calcular_stats_total(respostas)
     pct = percentual_conformidade(stats)
-    render_metrics_auditoria(stats, pct)
+    render_metrics_status(stats, pct)
 
     st.markdown("---")
 

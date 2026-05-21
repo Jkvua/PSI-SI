@@ -42,20 +42,21 @@ def chart_pizza_total(stats, title="Conformidade Total"):
     values = [v for v in stats.values() if v>0]
     colors = [COLORS.get(l,"#888") for l in labels]
     total = sum(stats.values())
-    pct = round(stats.get("Conforme",0)/total*100,1) if total else 0
 
     fig = go.Figure(go.Pie(
-        labels=labels, values=values,
+        labels=labels, 
+        values=values,
         marker=dict(colors=colors, line=dict(color=DARK_BG,width=2)),
-        hole=0.55, textinfo="percent+label",
-        textfont=dict(size=13,color=TEXT),
+        hole=0.55, 
+        textinfo="percent+label",
+        textposition="outside",
+        showlegend=True,
+        automargin=True,
+        pull=[0.05 if v/sum(values) < 0.1 else 0 for v in values],
         hovertemplate="<b>%{label}</b><br>%{value} (%{percent})<extra></extra>",
     ))
-
-    fig.add_annotation(text=f"<b>{pct}%</b><br><span style='font-size:11px'>Conformidade</span>",
-                       x=0.5,y=0.5,showarrow=False,font=dict(size=18,color=TEXT),align="center")
     
-    return _layout(fig, title, 320)
+    return _layout(fig, title, height=400, margin=dict(t=60,b=40,l=40,r=40))
 
 def chart_barras_grupos(grupos_stats, title="Conformidade por Grupo de Controles"):
     nomes, conf, nc, ea, na = [], [], [], [], []
