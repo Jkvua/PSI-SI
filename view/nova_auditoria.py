@@ -42,9 +42,10 @@ def render_nova_auditoria(pagina:str):
     chave = f"respostas_{norma}"
     if chave not in st.session_state:
         st.session_state[chave] = {}
-
+    
     respostas = render_filtro_nova_auditoria(controles, st.session_state[chave], norma)
     st.session_state[chave] = respostas
+
 
     st.markdown("---")
     st.markdown("### 📊 Resumo Parcial")
