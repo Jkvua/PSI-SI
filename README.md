@@ -12,9 +12,9 @@ Sistema desenvolvido para auxiliar auditorias de conformidade baseadas nas norma
 Projeto desenvolvido por 3 alunos da disciplina de Segurança da Informação.
 
 ```bash
-Github: Jkvua :)
-Github: GabrielaSchubert :0
-Github: Sidneckel :(
+Github: Jkvua
+Github: GabrielaSchubert
+Github: Sidneckel 
 ```
 ### ✅ Status do Projeto
 
