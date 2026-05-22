@@ -8,10 +8,15 @@ def calcular_stats_total(respostas: dict) -> dict:
     
     for v in respostas.values():
         status = v.get("status", "Não Aplica")
-        if status == "Não Conforme" and v.get("em_andamento", False):
+        if status == "Em Andamento":
             stats["Em Andamento"] += 1
+            stats["Não Conforme"] += 1
+        elif status == "Não Conforme" and v.get("em_andamento", False):
+            stats["Em Andamento"] += 1
+            stats["Não Conforme"] += 1
         else:
             stats[status] = stats.get(status, 0) + 1
+
     return stats
 
 def calcular_stats_grupos(respostas: dict, norma: str) -> dict:   
@@ -23,10 +28,15 @@ def calcular_stats_grupos(respostas: dict, norma: str) -> dict:
         for codigo, _unused in lista:
             v = respostas.get(codigo, {})
             status = v.get("status", "Não Aplica")
-            if status == "Não Conforme" and v.get("em_andamento", False):
+            if status == "Em Andamento":
                 stats["Em Andamento"] += 1
+                stats["Não Conforme"] += 1
+            elif status == "Não Conforme" and v.get("em_andamento", False):
+                stats["Em Andamento"] += 1
+                stats["Não Conforme"] += 1
             else:
                 stats[status] = stats.get(status, 0) + 1
+
         grupos_stats[grupo] = stats
     return grupos_stats
 
