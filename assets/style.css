@@ -116,3 +116,20 @@ div.stButton > button:not([kind="primary"]):hover {
     background-color: red;
     color: white;
 }
+
+
+div[data-testid="stExpander"] details summary {
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    min-height: 0.2rem;
+}
+
+div[data-testid="stExpander"] details summary p {
+    font-size: 0.68rem;
+    margin: 0;
+}
+
+div[data-testid="stExpander"] {
+    margin-top: 0.05rem;
+    margin-bottom: 0.05rem;
+}

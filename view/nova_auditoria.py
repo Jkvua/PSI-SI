@@ -43,7 +43,7 @@ def render_nova_auditoria(pagina:str):
     if chave not in st.session_state:
         st.session_state[chave] = {}
     
-    respostas = render_filtro_nova_auditoria(controles, st.session_state[chave], norma)
+    respostas = render_filtro_nova_auditoria(controles, st.session_state[chave], chave, norma)
     st.session_state[chave] = respostas
 
 
