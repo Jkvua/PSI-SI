@@ -32,7 +32,7 @@ def render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, 
     if tipo_rel_pdf == "Somente grupo selecionado" and grupo_sel:
         grupos_pdf = {grupo_sel: controles[grupo_sel]}
 
-    if st.button("📄 Gerar e Baixar PDF", type="primary", key="btn_pdf"):
+    if st.button("Gerar PDF", type="primary", key="btn_pdf"):
         with st.spinner("Gerando PDF com gráficos... aguarde."):
             try:
                 pdf_bytes = gerar_pdf(
@@ -49,7 +49,7 @@ def render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, 
                     f"{aud.get('data_auditoria','')}.pdf"
                 )
                 st.download_button(
-                    label="⬇️ Clique aqui para baixar o PDF",
+                    label="Clique aqui para baixar o PDF",
                     data=pdf_bytes,
                     file_name=nome_arq,
                     mime="application/pdf",
