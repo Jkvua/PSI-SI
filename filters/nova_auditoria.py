@@ -2,8 +2,9 @@ import streamlit as st
 
 OPECOES_STATUS = ["Conforme", "Não Conforme", "Não Aplica"]
 
-def _render_controle(codigo, nome, val, chave, grupo):
+def _render_controle(codigo, nome, val, chave, grupo, norma):
     col_id, col_nome, col_status, col_and = st.columns([1, 4, 2, 2])
+
     with col_id:
         st.markdown(f"`{codigo}`")
     with col_nome:
@@ -27,24 +28,18 @@ def _render_controle(codigo, nome, val, chave, grupo):
 
     return {"status": status, "em_andamento": em_and}
 
-def _render_grupo(grupo, lista, respostas, chave):
-    conformes_g = sum(1 for c,_ in lista if respostas.get(c,{}).get("status")=="Conforme")
-
-    exp_key = f"exp_{chave}_{grupo}"
-    if exp_key not in st.session_state:
-        st.session_state[exp_key] = False
-
-    with st.expander(
-        f"**{grupo}** ({len(lista)} controles) | ✅ {conformes_g} conformes",
-        expanded=st.session_state[exp_key]    
-    ):
-        for codigo, nome in lista:
-            val = respostas.get(codigo, {})
-            respostas[codigo] = _render_controle(codigo, nome, val, chave, grupo)
-
-    return respostas
-
 def render_filtro_nova_auditoria(norma, respostas, chave):
-    for grupo, lista in norma.items():
-        respostas = _render_grupo(grupo, lista, respostas, chave)
+    grupo = list(norma.keys())
+    tabs = st.tabs(grupo)
+
+    for i, grupo in enumerate(grupo):
+        lista = norma[grupo]
+        with tabs[i]:
+            conformes_g = sum(1 for c,_ in lista if respostas.get(c, {}).get("status")=="Conforme")
+            st.markdown(f"{grupo} ({len(lista)} controles) | {conformes_g} conformes")
+
+            for codigo, nome in lista:
+                val = respostas.get(codigo, {})
+                respostas[codigo] = _render_controle(codigo, nome, val, chave, grupo, norma)
+    
     return respostas
