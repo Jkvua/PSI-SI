@@ -172,49 +172,54 @@ def chart_evolucao(historico, norma, ordenar=True):
 
     return _layout(fig, f"Evolução da Conformidade — {norma}")
 
-def chart_comparativo(aud1, aud2, gs1, gs2, ordenar=False):
+def chart_comparativo(auditorias, stats_list, ordenar=True):
     dados = []
-    for g,s in gs1.items():
+    for g in stats_list[0].keys():
         nome = g.split(" - ")[0]
-        a1 = sum(s.values()) - s.get("Não Aplica", 0)
-        s2 = gs2.get(g,{})
-        a2 =sum(s2.values()) - s2.get("Não Aplica",0)
-        p1 = round(s.get("Conforme",0)/a1*100,1) if a1 else 0
-        p2 = round(s2.get("Conforme",0)/a2*100,1) if a2 else 0
-        dados.append({"nome": nome, "p1": p1, "p2": p2,
-                      "abs1": f"{s.get('Conforme',0)}/{a1}", 
-                      "abs2": f"{s2.get('Conforme',0)}/{a2}"
-                    })
+        grupo_dados = {"nome": nome}
+
+        for aud, gs in zip(auditorias, stats_list):
+            s = gs.get(g, {})
+            aplicaveis = sum(s.values()) - s.get("Não aplica", 0)
+            pct = round(s.get("Conforme", 0) / aplicaveis * 100, 1) if aplicaveis else 0
+            grupo_dados[aud["data_auditoria"]] = {
+                "pct": pct,
+                "abs": f"{s.get('Conforme', 0)}/{aplicaveis}"
+            }
+        
+        dados.append(grupo_dados)
 
     if ordenar:
-        dados = sorted(dados, key=lambda d: abs(d["p1"]-d["p2"]), reverse=True)
+        dados = sorted(dados, 
+                       key=lambda d: max([v["pct"] for k, v in d.items() if k!="nome"]) - min([v["pct"] for k, v in d.items() if k!="nome"]),
+                       reverse=True
+        )
 
     nomes = [d["nome"] for d in dados]
-    p1 = [d["p1"] for d in dados]
-    p2 = [d["p2"] for d in dados]
-    abs1 = [d["abs1"] for d in dados]
-    abs2 = [d["abs2"] for d in dados]
 
+    cor_grafico = ["#1f77b4", "#ff7f0e", "#9467bd", "#2ca02c", "#d62728"]
     fig=go.Figure()
-    fig.add_trace(go.Bar(
-        name = aud1["data_auditoria"], x=nomes, y=p1,
-        marker_color=COLORS["Conforme"], opacity = 0.9),
-        text=[f"{p}% ({a})" for p,a in zip(p1, abs1)], textposition="outside",
-        hovertemplate="<b>%{x}</b><br>%{y}% (%{text})<extra></extra>"
-    )
 
-    fig.add_trace(go.Bar(
-        name=aud2["data_auditoria"], x=nomes, y=p2,
-        marker_color=COLORS["Conforme"], opacity=0.9),
-        text=[f"{p}% ({a})" for p,a in zip(p2, abs2)], textposition="outside",
-        hovertemplate="<b>%{x}</b><br>%{y}% (%{text})<extra></extra>"
-    )
+    for i, aud in enumerate(auditorias):
+        y = [d[aud["data_auditoria"]]["pct"] for d in dados]
+        abs_valor = [d[aud["data_auditoria"]]["abs"] for d in dados]
+        fig.add_trace(go.Bar(
+            name = aud["data_auditoria"],
+            x = nomes,
+            y = y,
+            marker_color = cor_grafico[i % len(cor_grafico)],
+            opacity=0.9,
+            text=[f"{p}%" for p, a in zip(y, abs_valor)],
+            textposition="outside",
+            hovertemplate="<b>%{x}</b><br>%{y} (%{text})<extra></extra>"
+        ))
+
     fig.update_layout(
         barmode="group",
-        xaxis=dict(gridcolor=GRID, color=TEXT),
-        yaxis=dict(gridcolor=GRID, color=TEXT,range=[0,105], title="% Conformidade"),
-        height = int(STYLE.get("chart-height", 380)),
+        xaxis=dict(gridcolor="#ccc", color="#ccc"),
+        yaxis=dict(gridcolor="#ccc", color="#ccc",range=[0,105], title="% Conformidade"),
+        height = 400,
         margin = dict(t=50, b=90, l=50, r=10)
     )
     
-    return _layout(fig,"Comparativo entre Auditorias")
+    return fig

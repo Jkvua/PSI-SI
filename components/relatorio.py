@@ -45,7 +45,7 @@ def render_controles(grupos_exibir, grupos_stats, respostas):
             em_and = v.get("em_andamento", False)
 
             if status == "Não Conforme" and em_and:
-                icone = "🔄 Em Andamento"
+                icone = "Em Andamento"
             else:
                 icone = status_map.get(status, "Não Aplica")
                 

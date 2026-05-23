@@ -88,6 +88,7 @@ def render_comparativo_auditorias(auds_norma, norma_comp):
             aplicaveis = sum(s.values()) - s.get("Não Aplica",0)
             pct = round(s.get("Conforme",0)/aplicaveis*100,1) if aplicaveis else 0
             linha[f"% {aud['data_auditoria']}"] = f"{pct}%"
+        rows.append(linha)
         
     st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
     
