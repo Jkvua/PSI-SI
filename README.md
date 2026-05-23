@@ -16,9 +16,6 @@ Github: Jkvua
 Github: GabrielaSchubert
 Github: Sidneckel 
 ```
-### ✅ Status do Projeto
-
-🚧 Em desenvolvimento
 
 ## 📌 Sobre o Projeto
 
@@ -28,13 +25,13 @@ A aplicação permite registrar auditorias, avaliar controles, armazenar histór
 
 ### 🎯 Objetivos do Sistema
 
-- ✅ Avaliar conformidade baseada na ISO 27001
-- ✅ Utilizar controles da ISO 27002 para diagnóstico
-- ✅ Implementar módulo específico para ISO 27701
-- ✅ Gerar dashboards e gráficos de conformidade
-- ✅ Armazenar histórico de auditorias
-- ✅ Permitir comparações evolutivas entre diagnósticos
-- ✅ Gerar relatórios completos e parciais
+-  Avaliar conformidade baseada na ISO 27001
+-  Utilizar controles da ISO 27002 para diagnóstico
+-  Implementar módulo específico para ISO 27701
+-  Gerar dashboards e gráficos de conformidade
+-  Armazenar histórico de auditorias
+-  Permitir comparações evolutivas entre diagnósticos
+-  Gerar relatórios completos e parciais
 
 ### 🏗️ Arquitetura UML
 
