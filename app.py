@@ -22,7 +22,7 @@ with open("assets/style.css") as f:
 auditorias = load_auditorias()
 
 routes = {
-    "🏠 Home": lambda: render_home(auditorias),
+    "🏠 Página Inicial": lambda: render_home(auditorias),
     "📋 Nova Auditoria — 27001": lambda: render_nova_auditoria("📋 Nova Auditoria — 27001"),
     "📋 Nova Auditoria — 27701": lambda: render_nova_auditoria("📋 Nova Auditoria — 27701"),
     "📊 Dashboard": lambda: render_dashboard(),

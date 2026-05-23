@@ -68,10 +68,10 @@ def render_grafico_dashboard(aud, stats, grupos_stats, pct):
         pct_g = round(gs.get("Conforme",0)/avaliados*100,1) if avaliados else 0
         rows.append({
             "Grupo": grupo, 
-            "✅ Conformes": gs.get("Conforme",0),
-            "❌ Não Conformes": gs.get("Não Conforme",0),
-            "🔄 Em Andamento": gs.get("Em Andamento",0),
-            "🙅 Não Aplica": gs.get("Não Aplica",0),
+            "Conformes": gs.get("Conforme",0),
+            "Não Conformes": gs.get("Não Conforme",0),
+            "Em Andamento": gs.get("Em Andamento",0),
+            "Não Aplica": gs.get("Não Aplica",0),
             "% Conformidade": f"{pct_g}%"
         })
     st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)

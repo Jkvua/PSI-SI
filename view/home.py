@@ -23,7 +23,6 @@ def render_normas_info():
     with col_a:
         render_norma_card(
             titulo="ISO/IEC 27001 + 27002",
-            icone="📌",
             descricao="Avaliação do Sistema de Gestão de Segurança da Informação (SGSI) com 93 controles da ISO 27002:2022.",
             rota="📋 Nova Auditoria — 27001",
             detalhes_esquerda=["Organizacionais (37)", "Pessoas (8)"],
@@ -32,7 +31,6 @@ def render_normas_info():
     with col_b: 
         render_norma_card(
             titulo="ISO/IEC 27701",
-            icone="🔒",
             descricao="Avaliação do Sistema de Gestão de Informações de Privacidade (SGPI), para controladores e operadores de Dados Pessoais",
             rota="📋 Nova Auditoria — 27701",
             detalhes_esquerda=[],
@@ -41,7 +39,7 @@ def render_normas_info():
             
 def render_auditorias_table(auditorias):
     st.markdown("---")
-    st.markdown("### 📅 Últimas Auditorias")
+    st.markdown("### Últimas Auditorias")
 
     rows = []
     for a in sorted(auditorias, key=lambda x: x.get("criado_em",""), reverse=True)[:5]:

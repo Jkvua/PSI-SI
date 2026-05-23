@@ -8,11 +8,11 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
     col_salvar, _ ,col_limpar = st.columns([3, 6, 3])
 
     with col_salvar:
-        if st.button("💾 Salvar Auditoria", key="btn-salvar", type="primary"):
+        if st.button("Salvar Auditoria", key="btn-salvar", type="primary"):
             if not empresa.strip():
-                st.error("⚠️ Informe o nome da empresa!")
+                st.error("Informe o nome da empresa!")
             elif sum(stats.values()) == 0:
-                st.error("⚠️ Avalie pelo menos um controle!")
+                st.error("Avalie pelo menos um controle!")
             else:
                 grupos_stats = calcular_stats_grupos(respostas, norma)
                 aid = save_auditoria({
@@ -24,11 +24,11 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
                     "stats_total": stats, 
                     "stats_grupos": grupos_stats,
                 })
-                st.success(f"✅ Auditoria salva! ID: `{aid}`")
+                st.success(f"Auditoria salva! ID: `{aid}`")
                 st.session_state[chave] = {}
                 st.rerun()
 
     with col_limpar:
-        if st.button("🧹 Limpar Respostas", key="btn-limpar"):
+        if st.button("Limpar Respostas", key="btn-limpar"):
             st.session_state[chave] = {}
             st.rerun()

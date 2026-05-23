@@ -31,11 +31,11 @@ def render_auditoria_linha(aud):
         col2.markdown(f"{aud.get('norma','—')}")
         col3.markdown(f"{aud.get('data_auditoria','—')}")
         col4.markdown(f"*{aud.get('auditor','—')}*")
-        col5.markdown(f"🎯 **{pct}%**")
+        col5.markdown(f"**{pct}%**")
         col6.markdown(f"`{aud.get('id','')[:8]}`")
 
         with col7:
-            if st.button("🗑️ Excluir", key=f"del_{aud.get('id')}"):
+            if st.button("Excluir", key=f"del_{aud.get('id')}"):
                 delete_auditoria(aud.get("id"))
                 st.success("Auditoria excluída!")
                 st.rerun()

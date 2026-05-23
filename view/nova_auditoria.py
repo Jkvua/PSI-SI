@@ -48,7 +48,7 @@ def render_nova_auditoria(pagina:str):
 
 
     st.markdown("---")
-    st.markdown("### 📊 Resumo Parcial")
+    st.markdown("### Resumo Parcial")
     
     stats = calcular_stats_total(respostas)
     pct = percentual_conformidade(stats)

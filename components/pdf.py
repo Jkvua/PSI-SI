@@ -3,11 +3,11 @@ from logic.gerar_pdf import gerar_pdf
 
 def render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, grupo_sel, ):
     st.markdown("---")
-    st.markdown("### 📥 Exportar Relatório em PDF")
+    st.markdown("### Exportar Relatório em PDF")
 
     col_pdf1, col_pdf2 = st.columns(2)
     with col_pdf1:
-        incluir_comp_pdf = st.checkbox("📈 Incluir comparativo no PDF", value=False, key="pdf_comp")
+        incluir_comp_pdf = st.checkbox("Incluir comparativo no PDF", value=False, key="pdf_comp")
     with col_pdf2:
         tipo_rel_pdf = st.radio(
             "Escopo do PDF",
@@ -23,7 +23,7 @@ def render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, 
         )
         if auds_ant_pdf:
             aud_ant_pdf = auds_ant_pdf[0]
-            st.info(f"📊 Comparativo com auditoria de **{aud_ant_pdf.get('data_auditoria')}** "
+            st.info(f"Comparativo com auditoria de **{aud_ant_pdf.get('data_auditoria')}** "
                     f"({aud_ant_pdf.get('empresa','')})")
         else:
             st.warning("Nenhuma auditoria anterior disponível para comparativo.")
@@ -55,7 +55,7 @@ def render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, 
                     mime="application/pdf",
                     key="download_pdf",
                 )
-                st.success("✅ PDF gerado com sucesso!")
+                st.success("PDF gerado com sucesso!")
             except Exception as e:
-                st.error(f"❌ Erro ao gerar PDF: {e}")
+                st.error(f"Erro ao gerar PDF: {e}")
                 st.exception(e)

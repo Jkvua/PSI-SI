@@ -10,7 +10,7 @@ def render_sidebar():
         st.markdown("*Sistema de Diagnóstico de Conformidade*")
         st.markdown("---")
         pagina = st.radio("Navegação", [
-            "🏠 Home",
+            "🏠 Página Inicial",
             "📋 Nova Auditoria — 27001",
             "📋 Nova Auditoria — 27701",
             "📊 Dashboard",

@@ -54,7 +54,7 @@ def monstar_historico(auds_norma):
 
 def render_comparativo_auditorias(auds_norma, norma_comp):
     st.markdown("---")
-    st.markdown("### 🔀 Comparar Auditorias")
+    st.markdown("### Comparar Auditorias")
     
     opcoes = {f"{a.get('empresa')} — {a.get('data_auditoria')} (ID:{a.get('id','')[:8]})": a
               for a in auds_norma}
@@ -63,7 +63,8 @@ def render_comparativo_auditorias(auds_norma, norma_comp):
     selecionadas = st.multiselect(
         "Selecione as auditorias para comparação",
         labels,
-        default=labels[:2]
+        default=labels[:2],
+        placeholder="Escolha a auditoria para comparação"
     )
 
     if len(selecionadas) < 2:

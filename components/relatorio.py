@@ -25,9 +25,9 @@ def render_graficos(stats, grupos_stats):
 
 def render_controles(grupos_exibir, grupos_stats, respostas):
     status_map = {
-        "Conforme": "✅ Conforme",
-        "Não Conforme": "❌ Não Conforme",
-        "Em Andamento": "🔄 Em Andamento"
+        "Conforme": "Conforme",
+        "Não Conforme": "Não Conforme",
+        "Em Andamento": "Em Andamento"
     }
 
     for grupo, lista in grupos_exibir.items():
@@ -47,14 +47,14 @@ def render_controles(grupos_exibir, grupos_stats, respostas):
             if status == "Não Conforme" and em_and:
                 icone = "🔄 Em Andamento"
             else:
-                icone = status_map.get(status, "🙅 Não Aplica")
+                icone = status_map.get(status, "Não Aplica")
                 
             rows.append({"Código": codigo, "Controle": nome, "Status": icone})
 
         st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 
 def render_nao_conformidades(controles, respostas):
-    st.markdown("### ⚠️ Não Conformidades Identificadas")
+    st.markdown("### Não Conformidades Identificadas")
     nc_rows = []
     for grupo, lista in controles.items():
         for codigo, nome in lista:
@@ -64,12 +64,12 @@ def render_nao_conformidades(controles, respostas):
                     "Grupo": grupo,
                     "Código": codigo,
                     "Controle": nome,
-                    "Em Andamento": "Sim" if v.get("em_andamento") else "❌ Não"
+                    "Em Andamento": "Sim" if v.get("em_andamento") else "Não"
                 })
     if nc_rows:
         st.dataframe(pd.DataFrame(nc_rows), use_container_width=True, hide_index=True)
     else:
-        st.info("🎉 Nenhuma não conformidade identificada.")
+        st.info("Nenhuma não conformidade identificada.")
 
 def render_mostra_comparativo(aud_atual, auditorias, normas, grupo_stats):
     auds_ant_lista = sorted(
@@ -79,7 +79,7 @@ def render_mostra_comparativo(aud_atual, auditorias, normas, grupo_stats):
     if auds_ant_lista:
         aud_ant = auds_ant_lista[0]
         st.markdown("---")
-        st.markdown(f"### 📈 Comparativo com auditoria de {aud_ant.get('data_auditoria')}")
+        st.markdown(f"### Comparativo com auditoria de {aud_ant.get('data_auditoria')}")
         gs_ant = aud_ant.get("stats_grupos") or calcular_stats_grupos(aud_ant.get("respostas",{}), aud_ant.get("norma"))
         st.plotly_chart(chart_comparativo(aud_ant, aud_atual, gs_ant, grupo_stats), use_container_width=True)
     else:
