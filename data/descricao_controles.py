@@ -105,7 +105,7 @@ DESCRICOES_CONTROLES_27701 = {
     "A.1.2.5": "A organização deve obter e registrar o consentimento dos titulares de DP de acordo com os processos documentados.",
     "A.1.2.6": "A organização deve avaliar a necessidade de, e implementar onde apropriado, uma avaliação de impacto de privacidade sempre que um novo tratamento de DP ou mudanças no tratamento existente de DP forem planejadas.",
     "A.1.2.7": "A organização deve ter um contrato escrito com qualquer operador de DP que ela utilize e deve assegurar que seus contratos com operadores de DP contemplem a implementação dos controles apropriados no Anexo A.",
-    "A.1.2.8": "A organização deve determinar os respectivos papéis e responsabilidades para os operadores de DP, incluindo requisitos de proteção de DP e segurança, com qualquer controlador conjunto de DP.",
+    "A.1.2.8": "A organização deve determinar os respectivos papéis e responsabilidades para os operadores de DP, (incluindo requisitos de proteção de DP e segurança) com qualquer controlador conjunto de DP.",
     "A.1.2.9": "A organização deve determinar e manter, de forma segura, os registros necessários ao suporte às suas obrigações para o tratamento de DP.",
 
     "A.1.3.2": "A organização deve determinar e documentar suas obrigações legais, regulatórias e de negócios com os titulares de DP, relacionadas ao tratamento de seus DP, e fornecer meios para atender a essas obrigações.",
@@ -122,9 +122,9 @@ DESCRICOES_CONTROLES_27701 = {
     "A.1.4.2": "A organização deve limitar a coleta de DP ao mínimo que seja pertinente, proporcional e necessário para os propósitos identificados.",
     "A.1.4.3": "A organização deve limitar o tratamento de DP ao que seja adequado, pertinente e necessário para os propósitos identificados.",
     "A.1.4.4": "A organização deve assegurar e documentar que os DP sejam precisos, completos e atualizados, quando necessário, para os propósitos para os quais são tratados, ao longo do ciclo de vida dos DP.",
-    "A.1.4.5": "A organização deve definir e documentar objetivos de minimização de dados e quais mecanismos, como desidentificação, são usados para alcançar aqueles objetivos.",
-    "A.1.4.6": "A organização deve excluir os DP ou entregá-los em uma forma que não permita identificação ou reidentificação dos titulares de DP, tão logo os DP originais não sejam mais necessários para os propósitos identificados.",
-    "A.1.4.7": "A organização deve assegurar que arquivos temporários criados como resultado do tratamento de DP sejam descartados, por exemplo, apagados ou destruídos, seguindo procedimentos documentados dentro de um período de tempo especificado e documentado.",
+    "A.1.4.5": "A organização deve definir e documentar objetivos de minimização de dados e quais mecanismos, (como desidentificação) são usados para alcançar aqueles objetivos.",
+    "A.1.4.6": "A organização deve excluir os DP ou entregá-los em uma forma que não permita identificação ou reidentificação dos titulares de DP, tão logo os DP originais não sejam mais necessários para o(s) propósito(s) identificado(s).",
+    "A.1.4.7": "A organização deve assegurar que arquivos temporários criados como resultado do tratamento de DP sejam descartados, (por exemplo, apagados ou destruídos), seguindo procedimentos documentados dentro de um período de tempo especificado e documentado.",
     "A.1.4.8": "A organização não pode reter DP por período superior ao que seja necessário para os propósitos para os quais os DP sejam tratados.",
     "A.1.4.9": "A organização deve ter políticas, procedimentos ou mecanismos documentados para o descarte de DP.",
     "A.1.4.10": "A organização deve submeter DP transmitidos, por exemplo, enviados a outra organização por meio de rede de transmissão de dados, aos controles apropriados projetados para assegurar que os dados cheguem ao seu destino pretendido.",
@@ -134,16 +134,16 @@ DESCRICOES_CONTROLES_27701 = {
     "A.1.5.4": "A organização deve registrar transferências de DP para ou de terceiros e assegurar cooperação com aqueles terceiros para apoiar requisições relacionadas com as obrigações com os titulares de DP.",
     "A.1.5.5": "A organização deve registrar as divulgações de DP para terceiros, incluindo quais DP foram divulgados, para quem e em que momento.",
 
-    "A.2.2.2": "A organização deve assegurar, onde pertinente, que o contrato para tratar os DP aborde o papel da organização em prestar assistência nas obrigações do cliente considerando a natureza do tratamento e as informações disponíveis para a organização.",
+    "A.2.2.2": "A organização deve assegurar, onde pertinente, que o contrato para tratar os DP aborde o papel da organização em prestar assistência nas obrigações do cliente (considerando a natureza do tratamento e as informações disponíveis para a organização).",
     "A.2.2.3": "A organização deve assegurar que os DP tratados em nome de um cliente sejam tratados apenas para os propósitos expressos nas instruções documentadas do cliente.",
     "A.2.2.4": "A organização não pode usar os DP tratados sob um contrato para finalidades de marketing e publicidade sem estabelecer que o consentimento prévio foi obtido do respectivo titular de DP. A organização não pode tornar o fornecimento de tal consentimento uma condição para receber o serviço.",
     "A.2.2.5": "A organização deve informar ao cliente se, em sua opinião, uma instrução de tratamento infringe requisitos legais aplicáveis.",
     "A.2.2.6": "A organização deve fornecer ao cliente informações apropriadas para que o cliente possa demonstrar compliance com suas obrigações.",
-    "A.2.2.7": "A organização deve determinar e manter os registros necessários em apoio à demonstração de compliance com suas obrigações como especificado no contrato aplicável para o tratamento de DP conduzido em nome de um cliente.",
+    "A.2.2.7": "A organização deve determinar e manter os registros necessários em apoio à demonstração de compliance com suas obrigações (como especificado no contrato aplicável) para o tratamento de DP conduzido em nome de um cliente.",
 
     "A.2.3.2": "A organização deve fornecer ao cliente os meios para estar em compliance com suas obrigações com os titulares de DP.",
 
-    "A.2.4.2": "A organização deve assegurar que arquivos temporários criados como resultado do tratamento de DP sejam descartados, por exemplo, apagados ou destruídos, seguindo procedimentos documentados dentro de um período de tempo especificado e documentado.",
+    "A.2.4.2": "A organização deve assegurar que arquivos temporários criados como resultado do tratamento de DP sejam descartados (por exemplo, apagados ou destruídos) seguindo procedimentos documentados dentro de um período de tempo especificado e documentado.",
     "A.2.4.3": "A organização deve ser capaz de devolver, transferir ou descartar DP de forma segura. Ela deve também tornar sua política disponível para o cliente.",
     "A.2.4.4": "A organização deve submeter os DP transmitidos por meio de rede de transmissão de dados aos controles apropriados, que sejam projetados para assegurar que os dados cheguem ao seu destino pretendido.",
 
