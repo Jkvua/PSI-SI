@@ -12,7 +12,7 @@ COLORS = {
     "Conforme": STYLE.get("color-conforme"),
     "Não Conforme": STYLE.get("color-nao-conforme"),
     "Não Aplica": STYLE.get("color-nao-aplica"),
-    "Em Andamento": STYLE.get("color-em-andamento"),
+    # "Em Andamento": STYLE.get("color-em-andamento"),
 }
 DARK_BG = STYLE["bg-dark"]
 CARD_BG = STYLE["dg-card"]
@@ -38,10 +38,19 @@ def _layout(fig, title, height=None, margin=None):
     return fig
 
 def chart_pizza_total(stats, title="Conformidade Total"):
-    labels = [k for k,v in stats.items() if v>0]
-    values = [v for v in stats.values() if v>0]
+    conformes = stats.get("Conforme", 0)
+    nao_conformes = stats.get("Não Conforme", 0)
+    nao_aplica = stats.get("Não Aplica", 0)
+
+    aplicaveis = conformes + nao_conformes
+
+    pct_conforme = round(conformes / aplicaveis * 100, 1) if aplicaveis else 0
+    pct_nao_conforme = round(nao_conformes / aplicaveis * 100, 1) if aplicaveis else 0 
+    pct_nao_aplica = round(nao_aplica / (aplicaveis + nao_aplica) * 100, 1) if (aplicaveis + nao_aplica) else 0
+
+    labels = ["Conforme", "Não Conforme", "Não Aplica"]
+    values = [pct_conforme, pct_nao_conforme, pct_nao_aplica]
     colors = [COLORS.get(l,"#888") for l in labels]
-    total = sum(stats.values())
 
     fig = go.Figure(go.Pie(
         labels=labels, 
@@ -64,14 +73,12 @@ def chart_barras_grupos(grupos_stats, title="Conformidade por Grupo de Controles
         nomes.append(g.split(" - ")[0])
         conf.append(s.get("Conforme",0)); 
         nc.append(s.get("Não Conforme",0))
-        ea.append(s.get("Em Andamento",0)); 
         na.append(s.get("Não Aplica",0))
     
     fig = go.Figure()
     for label, vals, color in [
         ("Conforme", conf, COLORS["Conforme"]),
         ("Não Conforme", nc, COLORS["Não Conforme"]),
-        ("Em Andamento", ea, COLORS["Em Andamento"]),
         ("Não Aplica", na, COLORS["Não Aplica"])
     ]:
         
@@ -112,14 +119,15 @@ def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", orde
     absolutos = [d["abs"] for d in dados]
 
     cores = [COLORS["Conforme"] 
-             if p>=70 else COLORS["Em Andamento"] 
-             if p>=40 else COLORS["Não Conforme"] for p in pcts]
+             if p>=70 else COLORS["Não Conforme"] for p in pcts]
 
 
     fig=go.Figure(go.Bar(
-        x=pcts,y=nomes,orientation='h',
+        x=pcts,
+        y=nomes,
+        orientation='h',
         marker=dict(color=cores,line=dict(color=DARK_BG,width=1)),
-        text=[f"{p}% ({a})" for p,a in zip(pcts, absolutos)],
+        text=[f"{n} - {p}% ({a})" for n, p, a in zip(nomes, pcts, absolutos)],
         textposition='inside',
         textfont=dict(color="white",size=12),
         hovertemplate="<b>%{y}</b><br>%{x}%<extra></extra>"

@@ -32,7 +32,7 @@ def render_auditoria_linha(aud):
         col3.markdown(f"{aud.get('data_auditoria','—')}")
         col4.markdown(f"*{aud.get('auditor','—')}*")
         col5.markdown(f"**{pct}%**")
-        col6.markdown(f"`{aud.get('id','')[:8]}`")
+        col6.markdown(f"`{aud.get('criado_em','—')}`")
 
         with col7:
             if st.button("Excluir", key=f"del_{aud.get('id')}"):

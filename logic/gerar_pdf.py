@@ -10,7 +10,6 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 from reportlab.platypus import PageBreak
 from datetime import datetime
 
-# ── Cores do tema ─────────────────────────────────────────────────────────────
 AZUL       = colors.HexColor("#1a6fd4")
 AZUL_ESC   = colors.HexColor("#0d4fa3")
 AZUL_CLAR  = colors.HexColor("#dbeafe")
@@ -35,7 +34,6 @@ def _chart_bytes(fig):
         legend=dict(font=dict(color="#1e293b"), bgcolor="white"),
         title=dict(font=dict(color="#1e293b")),
     )
-    # atualiza eixos se existirem
     for ax in ("xaxis","yaxis","xaxis2","yaxis2"):
         try: fig.update_layout({ax: dict(gridcolor="#e2e8f0", color="#1e293b")})
         except: pass
@@ -145,8 +143,6 @@ def _gauge_bytes(pct):
                       paper_bgcolor="white")
     return _chart_bytes(fig)
 
-
-# ── Estilos ───────────────────────────────────────────────────────────────────
 def _estilos():
     base = getSampleStyleSheet()
     estilos = {
@@ -193,16 +189,14 @@ def _estilos():
 
 def _status_style(status, em_and, estilos):
     if status == "Conforme":
-        return Paragraph("✔ Conforme", estilos["badge_conf"]), VERDE_CLAR
+        return Paragraph("Conforme", estilos["badge_conf"]), VERDE_CLAR
     elif status == "Não Conforme" and em_and:
         return Paragraph("⟳ Em Andamento", estilos["badge_ea"]), AMAR_CLAR
     elif status == "Não Conforme":
-        return Paragraph("✖ Não Conforme", estilos["badge_nc"]), VERM_CLAR
+        return Paragraph("Não Conforme", estilos["badge_nc"]), VERM_CLAR
     else:
         return Paragraph("— Não Aplica", estilos["badge_na"]), CINZA_CLAR
 
-
-# ── Gerador principal ─────────────────────────────────────────────────────────
 def gerar_pdf(aud, stats, grupos_stats, controles_dict,
               grupos_exibir=None, aud_anterior=None):
     """
@@ -225,7 +219,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     es = _estilos()
     story = []
 
-    # ── CAPA ─────────────────────────────────────────────────────────────────
     capa_data = [[
         Table([[
             Paragraph(f"🛡️ PSI-SI", es["titulo"]),
@@ -246,7 +239,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     story.append(capa)
     story.append(Spacer(1, 0.5*cm))
 
-    # ── METADADOS ─────────────────────────────────────────────────────────────
     meta = [
         ["Empresa / Organização", aud.get("empresa","—"),
          "Data da Auditoria", aud.get("data_auditoria","—")],
@@ -274,7 +266,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     story.append(t_meta)
     story.append(Spacer(1, 0.4*cm))
 
-    # ── KPIs ─────────────────────────────────────────────────────────────────
     story.append(Paragraph("Resumo Executivo", es["h2"]))
     story.append(HRFlowable(width=W, thickness=1, color=AZUL_CLAR, spaceAfter=8))
 
@@ -304,7 +295,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     story.append(t_kpi)
     story.append(Spacer(1, 0.5*cm))
 
-    # ── GRÁFICOS — linha 1: gauge + pizza ────────────────────────────────────
     story.append(Paragraph("Dashboard de Conformidade", es["h2"]))
     story.append(HRFlowable(width=W, thickness=1, color=AZUL_CLAR, spaceAfter=8))
 
@@ -320,7 +310,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     except Exception as e:
         story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
 
-    # ── GRÁFICOS — linha 2: barras empilhadas ────────────────────────────────
     try:
         img_barras = Image(io.BytesIO(_barras_bytes(grupos_stats)), width=W, height=7*cm)
         story.append(img_barras)
@@ -329,7 +318,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     except Exception as e:
         story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
 
-    # ── GRÁFICOS — linha 3: barras horizontais % ─────────────────────────────
     try:
         h_pct = max(5.5*cm, len(grupos_stats)*1.1*cm + 1.5*cm)
         img_pct = Image(io.BytesIO(_percentual_bytes(grupos_stats)), width=W, height=h_pct)
@@ -339,7 +327,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     except Exception as e:
         story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
 
-    # ── GRÁFICO RADAR ────────────────────────────────────────────────────────
     if len(grupos_stats) >= 3:
         try:
             img_radar = Image(io.BytesIO(_radar_bytes(grupos_stats)), width=W*0.7,
@@ -351,7 +338,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         except Exception as e:
             story.append(Paragraph(f"[Radar indisponível: {e}]", es["body"]))
 
-    # ── TABELA RESUMO POR GRUPO ───────────────────────────────────────────────
     story.append(PageBreak())
     story.append(Paragraph("Resultados por Grupo de Controles", es["h2"]))
     story.append(HRFlowable(width=W, thickness=1, color=AZUL_CLAR, spaceAfter=8))
@@ -392,7 +378,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     story.append(t_grupo)
     story.append(Spacer(1, 0.6*cm))
 
-    # ── CONTROLES DETALHADOS ──────────────────────────────────────────────────
     exibir = grupos_exibir if grupos_exibir else controles_dict
     respostas = aud.get("respostas", {})
 
@@ -492,7 +477,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         t_nc.setStyle(TableStyle(nc_styles))
         story.append(t_nc)
 
-    # ── COMPARATIVO (se houver auditoria anterior) ────────────────────────────
     if aud_anterior:
         story.append(PageBreak())
         story.append(Paragraph("Comparativo com Auditoria Anterior", es["h2"]))
@@ -532,7 +516,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         ]))
         story.append(t_comp)
 
-    # ── RODAPÉ final ─────────────────────────────────────────────────────────
     def _rodape(canvas, doc):
         canvas.saveState()
         canvas.setFont("Helvetica", 7)

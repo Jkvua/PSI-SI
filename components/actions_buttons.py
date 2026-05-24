@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime
 from logic.utils import calcular_stats_grupos
 from storage.auditorias import save_auditoria
 
@@ -9,6 +10,7 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
 
     with col_salvar:
         if st.button("Salvar Auditoria", key="btn-salvar", type="primary"):
+            agora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             if not empresa.strip():
                 st.error("Informe o nome da empresa!")
             elif sum(stats.values()) == 0:
@@ -18,7 +20,7 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
                 aid = save_auditoria({
                     "norma": norma, "empresa": empresa.strip(),
                     "auditor": auditor.strip(), 
-                    "data_auditoria": str(data_auditoria),
+                    "data_auditoria": agora,
                     "cenario": cenario.strip(), 
                     "respostas": respostas,
                     "stats_total": stats, 

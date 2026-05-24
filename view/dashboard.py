@@ -39,9 +39,8 @@ def get_ultima_auditoria(auds):
     return sorted(auds, key=lambda x: x.get("data_auditoria",""), reverse=True)[0]
 
 def calcular_stats(aud):
-    stats = aud.get("stats_total") or calcular_stats_total(aud.get("respostas",{}))
-    grupos_stats = aud.get("stats_grupos") or calcular_stats_grupos(aud.get("respostas",{}), 
-        aud.get("norma","27001"))
+    stats = calcular_stats_total(aud.get("respostas", {}))
+    grupos_stats = calcular_stats_grupos(aud.get("respostas", {}), aud.get("norma", "27001"))
     pct = percentual_conformidade(stats)
     return stats, grupos_stats, pct
     
@@ -70,7 +69,7 @@ def render_grafico_dashboard(aud, stats, grupos_stats, pct):
             "Grupo": grupo, 
             "Conformes": gs.get("Conforme",0),
             "Não Conformes": gs.get("Não Conforme",0),
-            "Em Andamento": gs.get("Em Andamento",0),
+            # "Em Andamento": gs.get("Em Andamento",0),
             "Não Aplica": gs.get("Não Aplica",0),
             "% Conformidade": f"{pct_g}%"
         })

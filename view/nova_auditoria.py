@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import date
+from datetime import date, datetime
 from components.header import render_header
 from components.metrics import render_metrics_status
 from components.actions_buttons import render_auditoria_actions_buttons
@@ -19,7 +19,9 @@ def render_identificar_autidoria():
         auditor = st.text_input("Nome do Auditor", placeholder="Ex: Sidiclei Neckel")
 
     with col2:
-        data_auditoria = st.date_input("Data da Auditoria", value=date.today())
+        data_input = st.date_input("Data da Auditoria", value=date.today())
+        agora = datetime.now().strftime("%H:%M:%S")
+        data_auditoria = f"{data_input} {agora}"
         cenario = st.text_area("Cenário / Escopo da Auditoria", height=68, placeholder="Ex: Avaliação do ambiente de TI do IFC")
     
     return empresa, auditor, data_auditoria, cenario

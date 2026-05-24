@@ -1,21 +1,19 @@
 from data import CONTROLES_27001_27002, CONTROLES_27701
 
 def novo_stats() -> dict:
-    return {"Conforme": 0, "Não Conforme": 0, "Em Andamento": 0, "Não Aplica": 0}
+    return {"Conforme": 0, "Não Conforme": 0, "Não Aplica": 0}
 
 def calcular_stats_total(respostas: dict) -> dict:  
     stats = novo_stats()
     
     for v in respostas.values():
         status = v.get("status", "Não Aplica")
-        if status == "Em Andamento":
-            stats["Em Andamento"] += 1
-            stats["Não Conforme"] += 1
-        elif status == "Não Conforme" and v.get("em_andamento", False):
-            stats["Em Andamento"] += 1
-            stats["Não Conforme"] += 1
+        if status == "Conforme":
+            stats["Conforme"] += 1
+        elif status == "Não Aplica":
+            stats["Não Aplica"] += 1
         else:
-            stats[status] = stats.get(status, 0) + 1
+            stats["Não Conforme"] += 1
 
     return stats
 
@@ -28,16 +26,14 @@ def calcular_stats_grupos(respostas: dict, norma: str) -> dict:
         for codigo, _unused in lista:
             v = respostas.get(codigo, {})
             status = v.get("status", "Não Aplica")
-            if status == "Em Andamento":
-                stats["Em Andamento"] += 1
-                stats["Não Conforme"] += 1
-            elif status == "Não Conforme" and v.get("em_andamento", False):
-                stats["Em Andamento"] += 1
-                stats["Não Conforme"] += 1
+            if status == "Conforme":
+                stats["Conforme"] += 1
+            elif status == "Não Aplica":
+                stats["Não Aplica"] += 1
             else:
-                stats[status] = stats.get(status, 0) + 1
-
+                stats["Não Conforme"] += 1
         grupos_stats[grupo] = stats
+        
     return grupos_stats
 
 def percentual_conformidade(stats: dict) -> float: 
