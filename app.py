@@ -22,13 +22,13 @@ with open("assets/style.css") as f:
 auditorias = load_auditorias()
 
 routes = {
-    "🏠 Página Inicial": lambda: render_home(auditorias),
-    "📋 Nova Auditoria — 27001": lambda: render_nova_auditoria("📋 Nova Auditoria — 27001"),
-    "📋 Nova Auditoria — 27701": lambda: render_nova_auditoria("📋 Nova Auditoria — 27701"),
-    "📊 Dashboard": lambda: render_dashboard(),
-    "📈 Comparativo":lambda: render_comparativo(),
-    "📄 Relatórios": lambda: render_relatorio(),
-    "🗂️ Gerenciar Auditorias": lambda: render_gerencias_auditoria()
+    "Página Inicial": lambda: render_home(auditorias),
+    "Nova Auditoria: 27001": lambda: render_nova_auditoria("Nova Auditoria: 27001"),
+    "Nova Auditoria: 27701": lambda: render_nova_auditoria("Nova Auditoria: 27701"),
+    "Dashboard": lambda: render_dashboard(),
+    "Comparativo":lambda: render_comparativo(),
+    "Relatórios": lambda: render_relatorio(),
+    "Gerenciar Auditorias": lambda: render_gerencias_auditoria()
 }
 
 pagina = st.query_params.get("page", render_sidebar())
