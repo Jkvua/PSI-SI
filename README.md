@@ -1,9 +1,6 @@
-# PSI - SI
-## Primeiro projeto de segurança (PSI)
+# Primeiro projeto de segurança (PSI) - Segurança da Informação
 
-### 🔐 PSI — Sistema de Diagnóstico de Conformidade ISO 27001 & 27701
-
-### 📊 Ferramenta de Auditoria e Diagnóstico de Conformidade
+## 📊 Ferramenta de Auditoria e Diagnóstico de Conformidade ISO 27001 & 27701
 
 Sistema desenvolvido para auxiliar auditorias de conformidade baseadas nas normas ISO/IEC 27001, 27002 e 27701.
 
