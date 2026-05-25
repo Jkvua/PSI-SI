@@ -1,8 +1,28 @@
 import streamlit as st
+import extra_streamlit_components as stx
 from storage.usuarios import tem_usuarios, autenticar, criar_primeiro_usuario, criar_usuario
+from storage.auth import gerar_token, validar_token
+
+cookie_manager = stx.CookieManager()
 
 def render_login():
     st.set_page_config(page_title="PSI-SI", layout="wide")
+
+    token_cookie = cookie_manager.get("auth_token")
+    usuario_cookie = validar_token(token_cookie) if token_cookie else None
+
+    if usuario_cookie:
+        st.session_state["autenticado"] = True
+        st.session_state["usuario"] = {"usuario": usuario_cookie}
+        st.success("Bem-vindo de volta!")
+        st.rerun()
+
+        if st.button("Sair"):
+            revogar_token(token_cookie)
+            cookie_manager.delete("auth_token")
+            st.session_state.clear()
+            st.rerun()
+        return
 
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2: 
@@ -53,6 +73,8 @@ def _render_login_form():
                 "usuario": user.get("usuario", usuario),
                 "perfil": user.get("perfil", "usuario")
             }
+            token = gerar_token(usuario)
+            cookie_manager.set("auth_token", token)
             st.success("Login realizado com sucesso.")
             st.rerun()
         else:

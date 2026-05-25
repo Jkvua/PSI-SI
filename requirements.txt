@@ -54,3 +54,4 @@ websockets==16.0
 pymongo[srv]
 bcrypt
 Werkzeug==2.3.4
+extra-streamlit-components==0.0.7
