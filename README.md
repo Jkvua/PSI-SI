@@ -8,11 +8,9 @@ Sistema desenvolvido para auxiliar auditorias de conformidade baseadas nas norma
 
 Projeto desenvolvido por 3 alunos da disciplina de Segurança da Informação.
 
-```bash
 Github: [Jkvua](https://github.com/Jkvua)
 Github: [GabrielaSchubert](https://github.com/GabrielaSchubert)
 Github: [Sidneckel](https://github.com/Sidneckel) 
-```
 
 ## 📌 Sobre o Projeto
 
@@ -43,6 +41,13 @@ Modelagem geral da ferramenta e interação entre módulos.
 </a>
 
 </div>
+
+### Ferramentas Utilizadas
+
+```bash
+Git
+Streamlit
+```
 
 ### 🔍 Diagnóstico de Controles
 
