@@ -47,15 +47,6 @@ Modelagem geral da ferramenta e interação entre módulos.
 
 </div>
 
-### 🔄 Diagrama de Casos de Uso
-
-Fluxos principais:
-
-- Realizar auditoria
-- Gerar relatório
-- Visualizar dashboard
-- Comparar auditorias
-
 ### 🔍 Diagnóstico de Controles
 
 Para cada controle da ISO 27002 o auditor poderá selecionar um dos seguintes status:
