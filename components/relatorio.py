@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from charts import chart_pizza_total, chart_percentual_grupos, chart_comparativo
+from components.charts import chart_pizza_total, chart_percentual_grupos, chart_comparativo
 from logic.utils import calcular_stats_grupos
 
 def render_header_relatorio(aud, pct):
