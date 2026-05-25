@@ -1336,5 +1336,415 @@
     },
     "id": "20260524173347",
     "criado_em": "2026-05-24T17:33:47.325332"
+  },
+  {
+    "norma": "27001",
+    "empresa": "Ciser",
+    "auditor": "sidiclei neckel",
+    "data_auditoria": "2026-05-25 08:51:40",
+    "cenario": "avaliacao do ambiente",
+    "respostas": {
+      "5.1": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.2": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.3": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.4": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.5": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.6": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.7": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.8": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "5.9": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.11": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.12": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.14": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.15": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.16": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.17": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.18": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.19": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.20": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.21": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.22": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.23": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.24": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.25": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.26": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.27": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.28": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.29": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.30": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.31": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.32": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.33": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.34": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.35": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.36": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.37": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.1": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.2": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.3": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.5": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.6": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "6.7": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.8": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.1": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.3": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.4": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.5": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.6": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "7.7": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.8": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.11": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.12": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.13": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "7.14": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.1": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.2": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.4": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.5": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.6": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.7": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.9": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "8.10": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.12": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.13": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.14": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.15": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.16": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.17": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.18": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.19": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.20": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.21": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.22": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.23": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.24": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.25": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.26": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.27": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.28": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "8.29": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.30": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.31": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.32": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "8.33": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "8.34": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      }
+    },
+    "stats_total": {
+      "Conforme": 68,
+      "Não Conforme": 6,
+      "Não Aplica": 19
+    },
+    "stats_grupos": {
+      "5 - Controles Organizacionais": {
+        "Conforme": 30,
+        "Não Conforme": 1,
+        "Não Aplica": 6
+      },
+      "6 - Controles de Pessoas": {
+        "Conforme": 6,
+        "Não Conforme": 1,
+        "Não Aplica": 1
+      },
+      "7 - Controles Físicos": {
+        "Conforme": 10,
+        "Não Conforme": 1,
+        "Não Aplica": 3
+      },
+      "8 - Controles Tecnológicos": {
+        "Conforme": 22,
+        "Não Conforme": 3,
+        "Não Aplica": 9
+      }
+    },
+    "id": "20260525085140",
+    "criado_em": "2026-05-25T08:51:40.503327"
   }
 ]

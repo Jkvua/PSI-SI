@@ -299,8 +299,8 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     story.append(HRFlowable(width=W, thickness=1, color=AZUL_CLAR, spaceAfter=8))
 
     try:
-        img_gauge = Image(io.BytesIO(_gauge_bytes(pct)), width=W*0.46, height=6.2*cm)
-        img_pizza = Image(io.BytesIO(_pizza_bytes(stats)), width=W*0.5, height=6.2*cm)
+        img_gauge = Image(io.BytesIO(_gauge_bytes(pct)), width=W*0.45, height=5*cm)
+        img_pizza = Image(io.BytesIO(_pizza_bytes(stats)), width=W*0.45, height=5*cm)
         row1 = Table([[img_gauge, img_pizza]], colWidths=[W*0.46, W*0.54])
         row1.setStyle(TableStyle([("VALIGN",(0,0),(-1,-1),"MIDDLE"),
                                    ("LEFTPADDING",(0,0),(-1,-1),2),
