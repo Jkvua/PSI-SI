@@ -1,0 +1,135 @@
+:root {
+    --primary-color: #bac8b1;
+    --secondary-color: #f0f0f0;
+    --color-conforme: #22c55e;
+    --color-nao-conforme: #ef4444;
+    --color-em-andamento: #f59e0b;
+    --color-nao-aplica: #64748b;
+
+    --bg-dark: #0f1923;
+    --dg-card: #1a2332;
+    --text-color: #e8f4f8;
+    --grid-color: rgba(100,180,255,0.08);
+
+    --chart-height: 320;
+    --chart-margin-top: 50;
+    --chart-margin-bottom: 20;
+    --chart-margin-left: 20;
+    --chart-margin-right: 20;
+}
+
+.stButton > button {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.stProgress > div > div > div {
+    background-color: var(--primary-color);
+}
+
+.main-header h1{
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.main-header p {
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+/* home */
+.main-header {
+    background: linear-gradient(90deg, #f0f9ff, #cfe1ee);
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+.main-header h1 {
+    color: #065f46;
+    font-size: 32px;
+    margin: 0;
+}
+.main-header p {
+    color: #374151;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.norma-card {
+    background-color: #f0f9ff;
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.norma-card h3 {
+    margin-top: 0;
+    color: #1e3a8a;
+}
+.norma-card-cols {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.norma-card-cols div {
+    flex: 1;
+    font-weight: bold;
+}
+
+div[data-testid="stMetric"]:nth-child(1) {
+    background-color: #f0f9ff;
+    border-radius: 8px;
+    padding: 12px;
+    color: white;
+}
+
+/* botão nova auditoria(actions_buttons)*/
+
+/* botão salvar */
+div.stButton > button[kind="primary"] {
+    background-color: var(--verde-principal);
+    color: rgb(17, 16, 16);
+    transition: background-color 0.3s ease;
+    border: #bac8b1 solid 1px;
+}
+
+div.stButton > button[kind="primary"]:hover {
+    background-color: blue;
+    color: black;
+}
+
+/* botão limpar */
+div.stButton > button:not([kind="primary"]) {
+    background-color: var(--vermelho-alerta);
+    color: rgb(24, 23, 23);
+    transition: background-color 0.3s ease;
+    border: #bac8b1 solid 1px;;
+}
+
+div.stButton > button:not([kind="primary"]):hover {
+    background-color: red;
+    color: white;
+}
+
+
+div[data-testid="stExpander"] details summary {
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    min-height: 0.2rem;
+}
+
+div[data-testid="stExpander"] details summary p {
+    font-size: 0.68rem;
+    margin: 0;
+}
+
+div[data-testid="stExpander"] {
+    margin-top: 0.05rem;
+    margin-bottom: 0.05rem;
+}
