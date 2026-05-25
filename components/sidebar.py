@@ -11,7 +11,7 @@ def render_sidebar():
                    "Dashboard", "Comparativo", "Relatórios", "Gerenciar Auditorias"]
         selecao = st.radio("Navegação", paginas, label_visibility="collapsed")
         st.divider()
-        if st.button("🚪 Sair", use_container_width=True):
+        if st.button("Sair", use_container_width=True):
             st.session_state.clear()
             st.rerun()
 

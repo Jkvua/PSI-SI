@@ -9,7 +9,7 @@
     --bg-dark: #0f1923;
     --dg-card: #1a2332;
     --text-color: #e8f4f8;
-    --grid-color: rgba(100,180,255,0.08);
+    --grid-color: rgba(115, 183, 247, 0.08);
 
     --chart-height: 320;
     --chart-margin-top: 50;
@@ -59,7 +59,7 @@
 }
 
 .norma-card {
-    background-color: #f0f9ff;
+    background-color: #e1ecf3;
     padding: 16px;
     border-radius: 8px;
     min-height: 250px;
@@ -133,3 +133,65 @@ div[data-testid="stExpander"] {
     margin-top: 0.05rem;
     margin-bottom: 0.05rem;
 }
+
+/* login tela */
+
+.stApp {
+    background: linear-gradient(135deg, #f2f8ff 0%, #fafcff 100%);
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #0f2a4f;
+    margin: 0.5rem 0 0.2rem 0;
+}
+
+.login-subtitle {
+    font-size: 0.95rem;
+    text-align: center;
+    color: #5b6574;
+    margin-bottom: 1.5rem;
+}
+
+.login-badge {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: #e8f1ff;
+    color: #1d4f91;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.stTabs [data-baseweb="tab"] {
+    flex: 0.6;
+    margin: 0 4px;
+    background-color: #dde6f5 !important;
+    color: rgb(44, 42, 42) !important;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+}
+
+.stTextInput > div > div > input {
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.stButton button, .stFormSubmitButton button {
+    width: 100%;
+    border-radius: 12px;
+    height: 46px;
+    font-weight: 600;
+    background: #0f62fe;
+    color: white;
+    border: none;
+}
+
+.stButton button:hover, .stFormSubmitButton button:hover {
+    background: #0043ce;
+}
+

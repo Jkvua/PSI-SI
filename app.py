@@ -15,12 +15,10 @@ st.set_page_config(page_title="PSI-SI", page_icon=":bar_chart:",
 with open("assets/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ── Guarda de autenticação ──────────────────────────────────────────────────
 if "usuario" not in st.session_state:
     render_login()
     st.stop()
 
-# ── App principal ───────────────────────────────────────────────────────────
 auditorias = load_auditorias()
 routes = {
     "Página Inicial":        lambda: render_home(auditorias),
