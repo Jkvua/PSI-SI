@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+import plotly.express as px
 import re
 
 def load_css_vars(path="assets/style.css"):
@@ -118,8 +119,8 @@ def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", orde
     pcts = [d["pct"] for d in dados]
     absolutos = [d["abs"] for d in dados]
 
-    cores = [COLORS["Conforme"] 
-             if p>=70 else COLORS["Não Conforme"] for p in pcts]
+    paleta = px.colors.qualitative.Plotly
+    cores = [paleta[i % len(paleta)] for i in range(len(nomes))]
 
 
     fig=go.Figure(go.Bar(
@@ -133,8 +134,8 @@ def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", orde
         hovertemplate="<b>%{y}</b><br>%{x}%<extra></extra>"
     ))
     
-    fig.add_vline(x=70,line_dash="dash",line_color="rgba(255,255,255,0.3)",
-                  annotation_text="Meta 70%",annotation_font_color=TEXT)
+    fig.add_vline(x=95,line_dash="dash",line_color="rgba(255,255,255,0.3)",
+                  annotation_text="Meta +95%",annotation_font_color=TEXT)
     
     fig.update_layout(
         xaxis=dict(gridcolor=GRID,color=TEXT,range=[0,105]),
@@ -152,7 +153,7 @@ def chart_evolucao(historico, norma, ordenar=True):
     datas, pcts, absolutos = [], [], []    
     for h in historico:
         s = h["stats_total"]
-        total = sum(s.values())
+        total = sum(s.values()) 
         conformes = s.get("Conforme", 0)
         pct = round(conformes/total*100,1) if total else 0
         datas.append(h["data_auditoria"])
