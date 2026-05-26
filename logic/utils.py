@@ -1,7 +1,7 @@
 from data import CONTROLES_27001_27002, CONTROLES_27701
 
 def novo_stats() -> dict:
-    return {"Conforme": 0, "Não Conforme": 0, "Não Aplica": 0}
+    return {"Conforme": 0, "Não Conforme": 0, "Em Andamento": 0, "Não Aplica": 0}
 
 def calcular_stats_total(respostas: dict) -> dict:  
     stats = novo_stats()
@@ -12,8 +12,10 @@ def calcular_stats_total(respostas: dict) -> dict:
             stats["Conforme"] += 1
         elif status == "Não Aplica":
             stats["Não Aplica"] += 1
-        else:
+        elif status == "Não Conforme":
             stats["Não Conforme"] += 1
+            if v.get("em_andamento", False):
+                stats["Em Andamento"] += 1
 
     return stats
 
@@ -30,8 +32,10 @@ def calcular_stats_grupos(respostas: dict, norma: str) -> dict:
                 stats["Conforme"] += 1
             elif status == "Não Aplica":
                 stats["Não Aplica"] += 1
-            else:
+            elif status == "Não Conforme":
                 stats["Não Conforme"] += 1
+                if v.get("em_andamento", False):
+                    stats["Em Andamento"] += 1
         grupos_stats[grupo] = stats
         
     return grupos_stats
