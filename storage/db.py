@@ -21,7 +21,7 @@ def get_db():
             "**Passo 3:** Copie a connection string\n"
             "**Passo 4:** Edite `.streamlit/secrets.toml`:\n\n"
             "```\n"
-            "MONGO_URI = \"mongodb+srv://seguro:Seguro2026Teste@cluster0.saq8sca.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0\"\n"
+            "MONGO_URI = \"mongodb+srv://seguro:Seguro2026Teste@cluster0.saq8sca.mongodb.net/?appName=Cluster0\"\n"
             "```\n\n"
             "Substitua `usuario`, `senha` e `seu-cluster` pelos seus dados reais."
         )
