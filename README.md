@@ -47,12 +47,14 @@ JSON
 ```bash
 Git
 Streamlit
+MongoDB Atlas
 ```
 
 ### Linguagem Utilizada
 
 ```bash
 Python
+CSS
 ```
 
 ### 🔍 Diagnóstico de Controles
