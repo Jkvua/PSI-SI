@@ -22,12 +22,12 @@ def render_relatorio():
     auditorias_filtradas = filtrar_auditorias_por_perfil(auditorias, usuario)
 
     if not auditorias_filtradas:
-        st.warning("Nenhuma auditoria encontrada.")
+        st.warning("Nenhuma auditoria encontrada para gerar relatório.")
         st.stop()
     
     opcoes_aud = {
         f"{a.get('empresa')} — {a.get('norma')} — {a.get('data_auditoria')} (ID:{a.get('id','')[:8]})": a
-        for a in sorted(auditorias, key=lambda x: x.get("data_auditoria",""), reverse=True)
+        for a in sorted(auditorias_filtradas, key=lambda x: x.get("data_auditoria",""), reverse=True)
     }
 
     sel = st.selectbox("Selecione a auditoria", list(opcoes_aud.keys()))
@@ -58,6 +58,6 @@ def render_relatorio():
     render_nao_conformidades(grupos_exibir, respostas)
 
     if comparativo:
-        render_mostra_comparativo(aud, auditorias, [norma], grupos_stats)
+        render_mostra_comparativo(aud, auditorias_filtradas, [norma], grupos_stats)
 
-    render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, grupo_sel)
+    render_exportar_pdf(aud, auditorias_filtradas, norma, stats, grupos_stats, controles, grupo_sel)
