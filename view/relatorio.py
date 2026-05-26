@@ -12,7 +12,7 @@ from components.pdf import render_exportar_pdf
 
 def render_relatorio():
     render_header(
-        titulo="Relatorio de Conformidade",
+        titulo="Relatório de Conformidade",
         subtitulo="Relatório de conformidade das auditorias - exporte o PDF.",
         emoji="📄"
     )

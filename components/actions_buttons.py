@@ -6,6 +6,12 @@ from storage.auditorias import save_auditoria
 def render_auditoria_actions_buttons(empresa, auditor, data_auditoria, 
                                      cenario, respostas, stats,norma, chave):
     
+    if "auditoria_salva" not in st.session_state:
+        st.session_state["auditoria_salva"] = False
+    
+    if st.session_state["auditoria_salva"]:
+        st.success("Auditoria salva com sucesso!")
+
     col_salvar, _ ,col_limpar = st.columns([3, 6, 3])
 
     with col_salvar:
@@ -29,6 +35,7 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
                     "usuario": usuario_logado.get("usuario", "desconhecido"),
                     "usuario_id": usuario_logado.get("id")
                 })
+                st.session_state["auditoria_salva"] = True
                 st.success(f"Auditoria salva! ID: `{aid}`")
                 st.session_state[chave] = {}
                 st.rerun()
