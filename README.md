@@ -86,6 +86,22 @@ Inclui:
 - Comparativos históricos
 - Data das auditorias
 
+### Como executar - Local (via Python)
+
+Pré-requisitos: Python 3.11+ e pip.
+
+```bash
+# 1. Criar e ativar o ambiente virtual
+python -m venv .venv
+source .venv/bin/activate
+
+# 2. Instalar dependências
+pip install -r requirements.txt
+
+# 3. Executar a aplicação Streamlit
+streamlit run app.py
+```
+
 ### Link da Aplicação
 
 https://psi-si-auditoria.streamlit.app/
