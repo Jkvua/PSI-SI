@@ -3,6 +3,7 @@ import pandas as pd
 from cProfile import label
 from datetime import date
 from components.header import render_header
+from filters.usuario_auditoria import filtrar_auditorias_por_perfil
 from components.charts import chart_evolucao, chart_comparativo
 from logic.utils import calcular_stats_total, calcular_stats_grupos
 from storage.auditorias import load_auditorias
@@ -13,15 +14,18 @@ def render_comparativo():
         subtitulo="Compare as auditorias realizadas.",
         emoji="📈"
     )
-    
+
+    usuario = st.session_state.get("usuario", {})
     auditorias = load_auditorias()
-    if not auditorias:
+    auditorias_filtradas = filtrar_auditorias_por_perfil(auditorias, usuario)
+
+    if not auditorias_filtradas:
         st.warning("Nenhuma auditoria encontrada.")
         st.stop()
 
 
     norma_comp = st.selectbox("Norma para comparativo", ["27001", "27701"])
-    auds_norma = filtrar_por_norma(auditorias, norma_comp)
+    auds_norma = filtrar_por_norma(auditorias_filtradas, norma_comp)
 
     if not auds_norma:
         st.warning(f"Nenhuma auditoria para a norma {norma_comp}.")

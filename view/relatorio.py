@@ -2,6 +2,7 @@ import streamlit as st
 from storage.auditorias import load_auditorias
 from components.header import render_header
 from filters.relatorio import render_filtro_relatorio
+from filters.usuario_auditoria import filtrar_auditorias_por_perfil
 from components.metrics import render_metrics_status
 from components.relatorio import render_graficos, render_nao_conformidades, render_header_relatorio, render_controles, render_mostra_comparativo
 from data.controles_27001_27002 import CONTROLES_27001_27002
@@ -15,8 +16,12 @@ def render_relatorio():
         subtitulo="Relatório de conformidade das auditorias - exporte o PDF.",
         emoji="📄"
     )
+
+    usuario = st.session_state.get("usuario")
     auditorias = load_auditorias()
-    if not auditorias:
+    auditorias_filtradas = filtrar_auditorias_por_perfil(auditorias, usuario)
+
+    if not auditorias_filtradas:
         st.warning("Nenhuma auditoria encontrada.")
         st.stop()
     

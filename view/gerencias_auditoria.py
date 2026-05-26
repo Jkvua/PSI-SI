@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
+from storage.auditorias import buscar_todas_auditorias, buscar_auditoria_por_usuario_id
 from components.header import render_header
+from filters.usuario_auditoria import filtrar_auditorias_por_perfil
 from logic.utils import calcular_stats_total, percentual_conformidade
 from storage.auditorias import load_auditorias, delete_auditoria
 
@@ -11,12 +13,15 @@ def render_gerencias_auditoria():
         emoji="🗂️"
     )
 
+    usuario = st.session_state.get("usuario", {})
     auditorias = load_auditorias()
-    if not auditorias:
-        st.warning("Nenhuma auditoria armazenada.")
-        st.stop()
+    auditorias_filtradas = filtrar_auditorias_por_perfil(auditorias, usuario)
 
-    for aud in sorted(auditorias, key=lambda x: x.get("data_auditoria",""), reverse=True):
+    if not auditorias_filtradas:
+         st.warning("Nenhuma auditoria encontrada. Realize uma nova auditoria para visualizar aqui.")
+         st.stop()
+
+    for aud in sorted(auditorias_filtradas, key=lambda x: x.get("data_auditoria",""), reverse=True):
         render_auditoria_linha(aud)
 
 def calcular_pct(aud):

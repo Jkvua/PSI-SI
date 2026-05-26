@@ -22,3 +22,10 @@ def delete_auditoria(auditoria_id: str):
     auditorias = [a for a in load_auditorias() if a.get("id") != auditoria_id]
     with open(STORAGE_FILE, "w", encoding="utf-8") as f:
         json.dump(auditorias, f, ensure_ascii=False, indent=2)
+
+def buscar_todas_auditorias():
+    return load_auditorias()
+
+def buscar_auditoria_por_usuario_id(usuario_id):
+    todas = load_auditorias()
+    return [a for a in todas if a.get("usuario_id") == usuario_id]

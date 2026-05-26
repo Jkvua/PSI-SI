@@ -1,28 +1,29 @@
 import streamlit as st
 import extra_streamlit_components as stx
 from storage.usuarios import tem_usuarios, autenticar, criar_primeiro_usuario, criar_usuario
-from storage.auth import gerar_token, validar_token
+from storage.auth import gerar_token, validar_token, revogar_token
 
-cookie_manager = stx.CookieManager()
+cookie_manager = stx.CookieManager("psi_si_cookies_v1")
 
 def render_login():
     st.set_page_config(page_title="PSI-SI", layout="wide")
-
+    if "just_logged_out" not in st.session_state:
+        st.session_state["just_logged_out"] = False
+    
     token_cookie = cookie_manager.get("auth_token")
+
+    if st.session_state["just_logged_out"]:
+        if token_cookie is None:
+            st.session_state["just_logged_out"] = False
+        else:
+            token_cookie = None
+
     usuario_cookie = validar_token(token_cookie) if token_cookie else None
 
-    if usuario_cookie:
+    if usuario_cookie and not st.session_state.get("autenticado"):
         st.session_state["autenticado"] = True
-        st.session_state["usuario"] = {"usuario": usuario_cookie}
-        st.success("Bem-vindo de volta!")
+        st.session_state["usuario"] = usuario_cookie
         st.rerun()
-
-        if st.button("Sair"):
-            revogar_token(token_cookie)
-            cookie_manager.delete("auth_token")
-            st.session_state.clear()
-            st.rerun()
-        return
 
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2: 
@@ -65,16 +66,23 @@ def _render_login_form():
         entrar = st.form_submit_button("Entrar")
 
     if entrar:
+        if not usuario or not senha:
+            st.warning("Informe usuário e senha")
+            return
+
         user = autenticar(usuario, senha)
         if user:
-            st.session_state["autenticado"] = True
-            st.session_state["usuario"] = {
+            dados_usuario = {
+                "id": str(user.get("_id")),
                 "nome": user.get("nome", usuario),
                 "usuario": user.get("usuario", usuario),
                 "perfil": user.get("perfil", "usuario")
             }
-            token = gerar_token(usuario)
-            cookie_manager.set("auth_token", token)
+            st.session_state["usuario"] = dados_usuario
+            st.session_state["autenticado"] = True
+            
+            token = gerar_token(dados_usuario)
+            cookie_manager.set("auth_token", token, key="cookie_set_login")
             st.success("Login realizado com sucesso.")
             st.rerun()
         else:
@@ -99,4 +107,9 @@ def _render_signup_form():
                     st.success("Conta criada com sucesso. Faça login.")
                 except ValueError as err:
                     st.error(str(err))
-    
+
+def logout():
+    st.session_state.clear()
+    cookie_manager.delete("auth_token")
+    st.success("Você saiu da conta")
+    st.rerun()

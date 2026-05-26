@@ -3,19 +3,26 @@ import pandas as pd
 from datetime import date
 from components.header import render_header
 from components.metrics import render_metrics
+from filters.usuario_auditoria import filtrar_auditorias_por_perfil
 from components.cards import render_norma_card
+from storage.auditorias import load_auditorias
 from logic.utils import calcular_stats_total, percentual_conformidade
 
 def render_home(auditorias):
+    usuario = st.session_state.get("usuario")
+    auditorias = load_auditorias()
+    auditorias_filtradas = filtrar_auditorias_por_perfil(auditorias, usuario)
+    
     render_header(
         titulo="PSI-SI - Diagnóstico de Conformidade",
         subtitulo="Sistema de avaliação ISO/IEC 27001 + 27002 · 27701",
         emoji="🛡️",
-        auditorias=auditorias
+        auditorias=auditorias_filtradas
     )
+
     render_normas_info()
-    if auditorias:
-        render_auditorias_table(auditorias)
+    if auditorias_filtradas:
+        render_auditorias_table(auditorias_filtradas)
 
 
 def render_normas_info():

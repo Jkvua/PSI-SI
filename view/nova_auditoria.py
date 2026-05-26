@@ -61,5 +61,20 @@ def render_nova_auditoria(pagina:str):
     render_auditoria_actions_buttons(
         empresa, auditor, data_auditoria, cenario, 
         respostas, stats, norma, chave)
-    
+
+def salvar_auditoria(empresa, auditor, data_auditoria, cenario, respostas, stats, norma):
+    usuario_logado = st.session_state["usuario"]["usuario"]
+    auditoria = {
+        "empresa": empresa,
+        "auditor": auditor,
+        "data": data_auditoria,
+        "cenario": cenario,
+        "norma": norma,
+        "respostas": respostas,
+        "stats": stats,
+        "usuario": usuario_logado["usuario"],
+        "usuario_id": usuario_logado.get["id"],
+    }
+    save_auditoria(auditoria)
+    st.success("Auditoria salva com sucesso!")
 
