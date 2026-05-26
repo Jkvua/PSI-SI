@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from components.header import render_header
 from components.metrics import render_metrics_status
+from filters.usuario_auditoria import filtrar_auditorias_por_perfil
 from components.charts import chart_pizza_total, chart_barras_grupos, chart_percentual_grupos
 from filters.dashboard import render_dashboard_filtro
 from logic.utils import calcular_stats_total, percentual_conformidade, calcular_stats_grupos
@@ -14,14 +15,17 @@ def render_dashboard():
         emoji="📊"
     )
     
+    usuario = st.session_state.get("usuario", {})
     auditorias = load_auditorias()
-    if not auditorias:
+    auditorias_filtradas = filtrar_auditorias_por_perfil(auditorias, usuario)
+    
+    if not auditorias_filtradas:
         st.warning("Nenhuma auditoria encontrada. Realize uma auditoria primeiro.")
         st.stop()
 
-    norma, empresa = render_dashboard_filtro(auditorias)
+    norma, empresa = render_dashboard_filtro(auditorias_filtradas)
 
-    auds = auditorias
+    auds = auditorias_filtradas
     if norma != "Todas":
         auds = [a for a in auds if a.get("norma") == norma]
     if empresa != "Todas":

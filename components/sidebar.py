@@ -1,38 +1,54 @@
 import streamlit as st
-import sys, os
+import extra_streamlit_components as stx
+from storage.auth import revogar_token
 from streamlit_option_menu import option_menu
-from storage.auditorias import load_auditorias
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+def render_sidebar(cookie_manager):
+    usuario = st.session_state.get("usuario", {})
 
-def render_sidebar():
     with st.sidebar:
-        st.markdown("## 🛡️ PSI-SI")
+        st.markdown("### 🛡️ PSI-SI")
         st.markdown("*Sistema de Diagnóstico de Conformidade*")
-        st.markdown("---")
+    
+        st.divider()
 
-        pagina = option_menu("Menu", [
-            "Página Inicial",
-            "Nova Auditoria: 27001",
-            "Nova Auditoria: 27701",
-            "Dashboard",
-            "Comparativo",
-            "Relatórios",
-            "Gerenciar Auditorias",
+        selecao = option_menu (
+            "Menu",
+            ["Página Inicial", 
+             "Nova Auditoria: 27001", 
+             "Nova Auditoria: 27701",
+             "Dashboard", 
+             "Comparativo", 
+             "Relatórios", 
+             "Gerenciar Auditorias"
             ],
-            icons = ["house", "clipboard", "clipboard", "bar-chart", "graph-up", "file-earmark-text", "folder"],
-            menu_icon = "cast",
-            default_index = 0,
-            styles={
-                "nav-link-selected": {"background-color": "#b2bec7"}
-            }
             
+            icons=["house", "clipboard", "clipboard", "bar-chart", "graph-up", "file-earmark-text", "gear"],
+            menu_icon="cast",
+            default_index=0,
+            styles={
+                "nav-link-selected": {"background-color": "#e8f1ff", "color": "black"},
+            }
         )
+
+        st.divider()
         
+        if st.button("Sair", use_container_width=True):
+            try:
+                token_cookie = cookie_manager.get("auth_token")
+                if token_cookie:
+                    revogar_token(token_cookie)
+                cookie_manager.delete("auth_token")
+            except Exception as erro_logout:
+                print(f"Aviso: Limpeza de token/cookie falhou de forma segura: {erro_logout}")
+            
+            st.session_state["autenticado"] = False
+            st.session_state["usuario"] = {}
+            st.session_state["just_logged_out"] = True
 
-        st.markdown("---")
-        auditorias = load_auditorias()
-        st.markdown(f"**{len(auditorias)}** auditoria(s) armazenada(s)")
-        st.caption("PSI — IFC Araquari · 2026")
+            st.rerun()
 
-    return pagina
+        st.divider()
+
+        st.markdown(f"👤 Usuario: **{usuario.get('usuario','Usuário')}**")   
+    return selecao

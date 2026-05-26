@@ -7,7 +7,6 @@ from filters.nova_auditoria import render_filtro_nova_auditoria
 from data.controles_27001_27002 import CONTROLES_27001_27002
 from data.controles_27701 import CONTROLES_27701
 from logic.utils import calcular_stats_total, percentual_conformidade
-from storage.auditorias import save_auditoria
 
 
 def render_identificar_autidoria():
@@ -15,14 +14,31 @@ def render_identificar_autidoria():
     col1, col2 = st.columns(2)
 
     with col1:
-        empresa = st.text_input("Nome da Empresa / Organização", placeholder="Ex: IFC - Campus Araquari")
-        auditor = st.text_input("Nome do Auditor", placeholder="Ex: Sidiclei Neckel")
+        empresa = st.text_input(
+            "Nome da Empresa / Organização",
+            placeholder="Ex: IFC - Campus Araquari",
+            key="nova_auditoria_empresa"
+        )
+        auditor = st.text_input(
+            "Nome do Auditor",
+            placeholder="Ex: Sidiclei Neckel",
+            key="nova_auditoria_auditor"
+        )
 
     with col2:
-        data_input = st.date_input("Data da Auditoria", value=date.today())
+        data_input = st.date_input(
+            "Data da Auditoria",
+            value=st.session_state.get("nova_auditoria_data", date.today()),
+            key="nova_auditoria_data"
+        )
         agora = datetime.now().strftime("%H:%M:%S")
         data_auditoria = f"{data_input} {agora}"
-        cenario = st.text_area("Cenário / Escopo da Auditoria", height=68, placeholder="Ex: Avaliação do ambiente de TI do IFC")
+        cenario = st.text_area(
+            "Cenário / Escopo da Auditoria",
+            height=68,
+            placeholder="Ex: Avaliação do ambiente de TI do IFC",
+            key="nova_auditoria_cenario"
+        )
     
     return empresa, auditor, data_auditoria, cenario
 
@@ -60,6 +76,4 @@ def render_nova_auditoria(pagina:str):
 
     render_auditoria_actions_buttons(
         empresa, auditor, data_auditoria, cenario, 
-        respostas, stats, norma, chave)
-    
-
+        respostas, stats, norma, chave, controles)
