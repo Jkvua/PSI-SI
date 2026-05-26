@@ -1,4 +1,5 @@
 import streamlit as st
+import extra_streamlit_components as stx
 from storage.auditorias import load_auditorias
 from components.sidebar import render_sidebar
 from view.login import render_login
@@ -15,6 +16,9 @@ st.set_page_config(page_title="PSI-SI", page_icon=":bar_chart:",
 with open("assets/style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+cookie_manager = stx.CookieManager(key="psi_si_cookies_v1")
+
+
 if "autenticado" not in st.session_state:
     st.session_state["autenticado"] = False
 if "just_logged_out" not in st.session_state:
@@ -23,14 +27,11 @@ if "usuario" not in st.session_state:
     st.session_state["usuario"] = {}
 
 if not st.session_state.get("autenticado", False):
-    render_login()
+    render_login(cookie_manager)
     st.stop()
 
-pagina_sidebar = render_sidebar()
+pagina_sidebar = render_sidebar(cookie_manager)
 
-if not st.session_state.get("autenticado", False):
-    render_login()
-    st.stop()
 
 auditorias = load_auditorias()
 routes = {
@@ -44,8 +45,8 @@ routes = {
 }
 
 pagina = st.query_params.get("page")
+
 if not pagina:
-    # Se a URL não tiver parâmetro, usa a sidebar. Se a sidebar for None, assume a Página Inicial.
     pagina = pagina_sidebar if pagina_sidebar else "Página Inicial"
 
 if pagina in routes:

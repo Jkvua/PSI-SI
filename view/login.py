@@ -1,12 +1,10 @@
 import streamlit as st
-import extra_streamlit_components as stx
 from storage.usuarios import tem_usuarios, autenticar, criar_primeiro_usuario, criar_usuario
 from storage.auth import gerar_token, validar_token, revogar_token
 
-cookie_manager = stx.CookieManager("psi_si_cookies_v1")
-
-def render_login():
+def render_login(cookie_manager):
     st.set_page_config(page_title="PSI-SI", layout="wide")
+    
     if "just_logged_out" not in st.session_state:
         st.session_state["just_logged_out"] = False
     
@@ -37,7 +35,7 @@ def render_login():
             else:
                 abas = st.tabs(["Entrar", "Criar conta"])
                 with abas[0]:
-                    _render_login_form()
+                    _render_login_form(cookie_manager)
                 with abas[1]:
                     _render_signup_form()
 
@@ -59,7 +57,7 @@ def _render_admin_form():
                 st.success("Administrador criado com sucesso. Faça login.")
                 st.rerun()
 
-def _render_login_form():
+def _render_login_form(cookie_manager):
     with st.form("form_login"):
         usuario = st.text_input("Usuário", placeholder="Nome do usuário")
         senha = st.text_input("Senha", type="password", placeholder="Digite sua senha")
@@ -108,7 +106,7 @@ def _render_signup_form():
                 except ValueError as err:
                     st.error(str(err))
 
-def logout():
+def logout(cookie_manager):
     st.session_state.clear()
     cookie_manager.delete("auth_token")
     st.success("Você saiu da conta")

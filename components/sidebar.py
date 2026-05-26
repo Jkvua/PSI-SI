@@ -3,9 +3,7 @@ import extra_streamlit_components as stx
 from storage.auth import revogar_token
 from streamlit_option_menu import option_menu
 
-cookie_manager = stx.CookieManager(key="psi_si_cookies_v1")
-
-def render_sidebar():
+def render_sidebar(cookie_manager):
     usuario = st.session_state.get("usuario", {})
 
     with st.sidebar:
