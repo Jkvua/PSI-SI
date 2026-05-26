@@ -17,6 +17,7 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
                 st.error("Avalie pelo menos um controle!")
             else:
                 grupos_stats = calcular_stats_grupos(respostas, norma)
+                usuario_logado = st.session_state.get("usuario", {})
                 aid = save_auditoria({
                     "norma": norma, "empresa": empresa.strip(),
                     "auditor": auditor.strip(), 
@@ -25,6 +26,8 @@ def render_auditoria_actions_buttons(empresa, auditor, data_auditoria,
                     "respostas": respostas,
                     "stats_total": stats, 
                     "stats_grupos": grupos_stats,
+                    "usuario": usuario_logado.get("usuario", "desconhecido"),
+                    "usuario_id": usuario_logado.get("id")
                 })
                 st.success(f"Auditoria salva! ID: `{aid}`")
                 st.session_state[chave] = {}
