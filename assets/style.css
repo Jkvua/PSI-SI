@@ -101,7 +101,7 @@ div.stButton > button[kind="primary"] {
 
 div.stButton > button[kind="primary"]:hover {
     background-color: blue;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 /* botão limpar */
