@@ -135,7 +135,7 @@ def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", orde
     ))
     
     fig.add_vline(x=95,line_dash="dash",line_color="rgba(255,255,255,0.3)",
-                  annotation_text="Meta +{meta}",annotation_font_color=TEXT)
+                  annotation_text="Meta +95",annotation_font_color=TEXT)
     
     fig.update_layout(
         xaxis=dict(gridcolor=GRID,color=TEXT,range=[0,105]),
