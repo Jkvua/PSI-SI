@@ -31,7 +31,7 @@ def render_normas_info():
         render_norma_card(
             titulo="ISO/IEC 27001 + 27002",
             descricao="Avaliação do Sistema de Gestão de Segurança da Informação (SGSI) com 93 controles da ISO 27002:2022.",
-            rota="📋 Nova Auditoria — 27001",
+            rota="Nova Auditoria: 27001",
             detalhes_esquerda=["Organizacionais (37)", "Pessoas (8)"],
             detalhes_direita=["Físicos (14)", "Tecnológicos (34)"]
         )
@@ -39,7 +39,7 @@ def render_normas_info():
         render_norma_card(
             titulo="ISO/IEC 27701",
             descricao="Avaliação do Sistema de Gestão de Informações de Privacidade (SGPI), para controladores e operadores de Dados Pessoais",
-            rota="📋 Nova Auditoria — 27701",
+            rota="Nova Auditoria: 27701",
             detalhes_esquerda=[],
             detalhes_direita=[]
         )
