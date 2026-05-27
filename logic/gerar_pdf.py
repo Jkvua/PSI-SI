@@ -1,6 +1,5 @@
 import io
 import plotly.graph_objects as go
-import traceback
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -10,7 +9,6 @@ from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table,
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 from reportlab.platypus import PageBreak
 from datetime import datetime
-from components.charts import chart_barras_grupos, chart_comparativo, chart_percentual_grupos, chart_pizza_total, radar_bytes, gauge_bytes
 
 AZUL       = colors.HexColor("#1a6fd4")
 AZUL_ESC   = colors.HexColor("#0d4fa3")
@@ -28,7 +26,8 @@ PRETO      = colors.HexColor("#1e293b")
 BRANCO     = colors.white
 
 
-def _fig_para_bytes(fig):
+def _chart_bytes(fig):
+    """Converte figura Plotly para PNG bytes."""
     fig.update_layout(
         paper_bgcolor="white", plot_bgcolor="white",
         font=dict(color="#1e293b"),
@@ -40,6 +39,109 @@ def _fig_para_bytes(fig):
         except: pass
     return fig.to_image(format="png", width=700, height=320, scale=2)
 
+
+def _pizza_bytes(stats):
+    CORES = {"Conforme":"#22c55e","Não Conforme":"#ef4444",
+              "Em Andamento":"#f59e0b","Não Aplica":"#94a3b8"}
+    labels = [k for k,v in stats.items() if v > 0]
+    values = [v for k,v in stats.items() if v > 0]
+    fig = go.Figure(go.Pie(
+        labels=labels, values=values,
+        marker=dict(colors=[CORES.get(l,"#888") for l in labels],
+                    line=dict(color="white", width=2)),
+        hole=0.5, textinfo="percent+label",
+        textfont=dict(size=12),
+    ))
+    total = sum(stats.values())
+    pct = round(stats.get("Conforme",0)/total*100,1) if total else 0
+    fig.add_annotation(text=f"<b>{pct}%</b>", x=0.5, y=0.5,
+                       showarrow=False, font=dict(size=20, color="#1e293b"))
+    fig.update_layout(title="Conformidade Geral", height=300, margin=dict(t=40,b=10,l=10,r=10))
+    return _chart_bytes(fig)
+
+
+def _barras_bytes(grupos_stats):
+    CORES = {"Conforme":"#22c55e","Não Conforme":"#ef4444",
+              "Em Andamento":"#f59e0b","Não Aplica":"#94a3b8"}
+    nomes = [g.split(" - ")[0] for g in grupos_stats]
+    fig = go.Figure()
+    for label, cor in CORES.items():
+        fig.add_trace(go.Bar(
+            name=label, x=nomes,
+            y=[s.get(label,0) for s in grupos_stats.values()],
+            marker_color=cor
+        ))
+    fig.update_layout(barmode="stack", title="Controles por Grupo",
+                      height=300, margin=dict(t=40,b=80,l=40,r=10))
+    return _chart_bytes(fig)
+
+
+def _percentual_bytes(grupos_stats):
+    nomes, pcts = [], []
+    for g, s in grupos_stats.items():
+        ap = sum(s.values()) - s.get("Não Aplica",0)
+        nomes.append(g.split(" - ")[0])
+        pcts.append(round(s.get("Conforme",0)/ap*100,1) if ap else 0)
+    cores = ["#22c55e" if p>=70 else "#f59e0b" if p>=40 else "#ef4444" for p in pcts]
+    fig = go.Figure(go.Bar(
+        x=pcts, y=nomes, orientation='h',
+        marker=dict(color=cores),
+        text=[f"{p}%" for p in pcts], textposition='inside',
+        textfont=dict(color="white", size=11),
+    ))
+    fig.add_vline(x=70, line_dash="dash", line_color="#94a3b8",
+                  annotation_text="Meta 70%", annotation_font_color="#64748b")
+    fig.update_layout(title="% Conformidade por Grupo", height=max(250, len(nomes)*38+60),
+                      xaxis=dict(range=[0,110]), margin=dict(t=40,b=20,l=10,r=60))
+    return _chart_bytes(fig)
+
+
+def _radar_bytes(grupos_stats):
+    cats = [g.split(" - ")[0] for g in grupos_stats]
+    vals = []
+    for s in grupos_stats.values():
+        ap = sum(s.values()) - s.get("Não Aplica",0)
+        vals.append(round(s.get("Conforme",0)/ap*100,1) if ap else 0)
+    cats_closed = cats + [cats[0]]
+    vals_closed = vals + [vals[0]]
+    fig = go.Figure(go.Scatterpolar(
+        r=vals_closed, theta=cats_closed,
+        fill='toself', fillcolor='rgba(26,111,212,0.2)',
+        line=dict(color='#1a6fd4', width=2),
+        marker=dict(color='#1a6fd4', size=6),
+    ))
+    fig.update_layout(
+        title="Radar de Conformidade por Grupo",
+        polar=dict(radialaxis=dict(visible=True, range=[0,100],
+                                   gridcolor="#e2e8f0", tickfont=dict(size=9)),
+                   angularaxis=dict(gridcolor="#e2e8f0")),
+        height=320, margin=dict(t=50,b=20,l=20,r=20)
+    )
+    return _chart_bytes(fig)
+
+
+def _gauge_bytes(pct):
+    fig = go.Figure(go.Indicator(
+        mode="gauge+number+delta",
+        value=pct,
+        number=dict(suffix="%", font=dict(size=36, color="#1e293b")),
+        title=dict(text="Índice de Conformidade", font=dict(size=14, color="#1e293b")),
+        gauge=dict(
+            axis=dict(range=[0,100], tickwidth=1, tickcolor="#64748b"),
+            bar=dict(color="#1a6fd4"),
+            bgcolor="white",
+            borderwidth=2, bordercolor="#e2e8f0",
+            steps=[
+                dict(range=[0,40], color="#fee2e2"),
+                dict(range=[40,70], color="#fef3c7"),
+                dict(range=[70,100], color="#dcfce7"),
+            ],
+            threshold=dict(line=dict(color="#ef4444",width=4), thickness=0.75, value=70),
+        )
+    ))
+    fig.update_layout(height=260, margin=dict(t=50,b=20,l=30,r=30),
+                      paper_bgcolor="white")
+    return _chart_bytes(fig)
 
 def _estilos():
     base = getSampleStyleSheet()
@@ -96,8 +198,12 @@ def _status_style(status, em_and, estilos):
         return Paragraph("— Não Aplica", estilos["badge_na"]), CINZA_CLAR
 
 def gerar_pdf(aud, stats, grupos_stats, controles_dict,
-              grupos_exibir=None, aud_anterior=None, meta=95):
-    
+              grupos_exibir=None, aud_anterior=None):
+    """
+    Retorna bytes do PDF gerado.
+    grupos_exibir: dict subconjunto de controles_dict (None = todos)
+    aud_anterior: dict da auditoria anterior para comparativo (opcional)
+    """
     buffer = io.BytesIO()
     norma = aud.get("norma","27001")
     pct = round(stats.get("Conforme",0) /
@@ -109,7 +215,7 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         title=f"Relatório PSI-SI — {aud.get('empresa','')}",
         author=aud.get("auditor","PSI-SI"))
 
-    W = A4[0] - 3.6*cm 
+    W = A4[0] - 3.6*cm  # largura útil
     es = _estilos()
     story = []
 
@@ -192,14 +298,9 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
     story.append(Paragraph("Dashboard de Conformidade", es["h2"]))
     story.append(HRFlowable(width=W, thickness=1, color=AZUL_CLAR, spaceAfter=8))
 
-    # IMPORTANTE: Garanta que você importou essas funções no topo do arquivo:
-    # from components.charts import chart_gauge, chart_pizza, chart_barras, chart_percentual_grupos, chart_radar
-
     try:
-        # Chamando as funções reais do seu sistema e convertendo com fig_para_bytes
-        img_gauge = Image(io.BytesIO(_fig_para_bytes(gauge_bytes(pct, meta=95))), width=W*0.45, height=5*cm)
-        img_pizza = Image(io.BytesIO(_fig_para_bytes(chart_pizza_total(stats))), width=W*0.45, height=5*cm)
-        
+        img_gauge = Image(io.BytesIO(_gauge_bytes(pct)), width=W*0.45, height=5*cm)
+        img_pizza = Image(io.BytesIO(_pizza_bytes(stats)), width=W*0.45, height=5*cm)
         row1 = Table([[img_gauge, img_pizza]], colWidths=[W*0.46, W*0.54])
         row1.setStyle(TableStyle([("VALIGN",(0,0),(-1,-1),"MIDDLE"),
                                    ("LEFTPADDING",(0,0),(-1,-1),2),
@@ -207,37 +308,34 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         story.append(row1)
         story.append(Spacer(1, 0.3*cm))
     except Exception as e:
-        traceback.print_exc()
-        story.append(Paragraph(f"[Gráfico Gauge/Pizza indisponível: {e}]", es["body"]))
+        story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
 
     try:
-        img_barras = Image(io.BytesIO(_fig_para_bytes(chart_barras_grupos(grupos_stats))), width=W, height=7*cm)
+        img_barras = Image(io.BytesIO(_barras_bytes(grupos_stats)), width=W, height=7*cm)
         story.append(img_barras)
         story.append(Paragraph("Controles avaliados por grupo e status", es["caption"]))
         story.append(Spacer(1, 0.2*cm))
     except Exception as e:
-        story.append(Paragraph(f"[Gráfico Barras indisponível: {e}]", es["body"]))
+        story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
 
     try:
         h_pct = max(5.5*cm, len(grupos_stats)*1.1*cm + 1.5*cm)
-        # Note que aqui passamos a meta também
-        img_pct = Image(io.BytesIO(_fig_para_bytes(chart_percentual_grupos(grupos_stats, meta=95))), width=W, height=h_pct)
+        img_pct = Image(io.BytesIO(_percentual_bytes(grupos_stats)), width=W, height=h_pct)
         story.append(img_pct)
-        story.append(Paragraph("Percentual de conformidade por grupo (linha vermelha = meta 95%)", es["caption"]))
+        story.append(Paragraph("Percentual de conformidade por grupo (linha vermelha = meta 70%)", es["caption"]))
         story.append(Spacer(1, 0.2*cm))
     except Exception as e:
-        traceback.print_exc()
-        story.append(Paragraph(f"[Gráfico Percentual indisponível: {e}]", es["body"]))
+        story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
 
     if len(grupos_stats) >= 3:
         try:
-            img_radar = Image(io.BytesIO(_fig_para_bytes(radar_bytes(grupos_stats))), width=W*0.7, height=7*cm)
+            img_radar = Image(io.BytesIO(_radar_bytes(grupos_stats)), width=W*0.7,
+                               height=7*cm)
             t_radar = Table([[img_radar]], colWidths=[W*0.7])
             t_radar.setStyle(TableStyle([("ALIGN",(0,0),(-1,-1),"CENTER")]))
             story.append(t_radar)
             story.append(Paragraph("Radar de conformidade por categoria de controles", es["caption"]))
         except Exception as e:
-            traceback.print_exc()
             story.append(Paragraph(f"[Radar indisponível: {e}]", es["body"]))
 
     story.append(PageBreak())
@@ -332,6 +430,7 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         story.append(KeepTogether([t_ctrl]))
         story.append(Spacer(1, 0.4*cm))
 
+    # ── NÃO CONFORMIDADES ────────────────────────────────────────────────────
     nc_list = []
     for grupo, lista in exibir.items():
         for codigo, nome in lista:
