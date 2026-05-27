@@ -99,7 +99,7 @@ def chart_barras_grupos(grupos_stats, title="Conformidade por Grupo de Controles
     )
     return _layout(fig, title)
 
-def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", ordenar=True):
+def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", ordenar=True, meta=95):
     nomes, pcts, absolutos =[], [], []
     for g,s in grupos_stats.items():
         total = sum(s.values()) 
@@ -135,7 +135,7 @@ def chart_percentual_grupos(grupos_stats, title="% Conformidade por Grupo", orde
     ))
     
     fig.add_vline(x=95,line_dash="dash",line_color="rgba(255,255,255,0.3)",
-                  annotation_text="Meta +95%",annotation_font_color=TEXT)
+                  annotation_text="Meta +{meta}",annotation_font_color=TEXT)
     
     fig.update_layout(
         xaxis=dict(gridcolor=GRID,color=TEXT,range=[0,105]),
@@ -230,5 +230,54 @@ def chart_comparativo(auditorias, stats_list, ordenar=True):
         height = 400,
         margin = dict(t=50, b=90, l=50, r=10)
     )
+    
+    return fig
+
+def radar_bytes(grupos_stats):
+    cats = [g.split(" - ")[0] for g in grupos_stats]
+    vals = []
+    for s in grupos_stats.values():
+        ap = sum(s.values()) - s.get("Não Aplica",0)
+        vals.append(round(s.get("Conforme",0)/ap*100,1) if ap else 0)
+    cats_closed = cats + [cats[0]]
+    vals_closed = vals + [vals[0]]
+
+    fig = go.Figure(go.Scatterpolar(
+        r=vals_closed, theta=cats_closed,
+        fill='toself', fillcolor='rgba(26,111,212,0.2)',
+        line=dict(color='#1a6fd4', width=2),
+        marker=dict(color='#1a6fd4', size=6),
+    ))
+    fig.update_layout(
+        title="Radar de Conformidade por Grupo",
+        polar=dict(radialaxis=dict(visible=True, range=[0,100],
+                                   gridcolor="#e2e8f0", tickfont=dict(size=9)),
+                   angularaxis=dict(gridcolor="#e2e8f0")),
+        height=320, margin=dict(t=50,b=20,l=20,r=20)
+    )
+    return fig
+
+
+def gauge_bytes(pct, meta=95):
+    fig = go.Figure(go.Indicator(
+        mode="gauge+number+delta",
+        value=pct,
+        number=dict(suffix="%", font=dict(size=36, color="#1e293b")),
+        title=dict(text="Índice de Conformidade", font=dict(size=14, color="#1e293b")),
+        gauge=dict(
+            axis=dict(range=[0,100], tickwidth=1, tickcolor="#64748b"),
+            bar=dict(color="#1a6fd4"),
+            bgcolor="white",
+            borderwidth=2, bordercolor="#e2e8f0",
+            steps=[
+                dict(range=[0,40], color="#fee2e2"),
+                dict(range=[40,70], color="#fef3c7"),
+                dict(range=[70,100], color="#dcfce7"),
+            ],
+            threshold=dict(line=dict(color="#ef4444",width=4), thickness=0.75, value=meta),
+        )
+    ))
+    fig.update_layout(height=260, margin=dict(t=50,b=20,l=30,r=30),
+                      paper_bgcolor="white")
     
     return fig
