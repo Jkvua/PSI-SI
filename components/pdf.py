@@ -18,7 +18,10 @@ def render_exportar_pdf(aud, auditorias, norma, stats, grupos_stats, controles, 
     aud_ant_pdf = None
     if incluir_comp_pdf:
         auds_ant_pdf = sorted(
-            [a for a in auditorias if a.get("norma")==norma and a.get("id")!=aud.get("id")],
+            [a for a in auditorias
+             if a.get("norma") == norma 
+             and a.get("empresa") == aud.get("empresa")
+             and a.get("id")!=aud.get("id")],
             key=lambda x: x.get("data_auditoria",""), reverse=True
         )
         if auds_ant_pdf:
