@@ -76,6 +76,11 @@ def render_comparativo_auditorias(auds_norma, norma_comp):
         return
 
     auditoria_sel = [opcoes[l] for l in selecionadas]
+    empresas_selecionadas = set(a.get("empresa") for a in auditoria_sel)
+
+    if len(empresas_selecionadas) > 1:
+        st.error(f"Erro: Você selecionou auditorias de empresas diferentes ({', '.join(empresas_selecionadas)}).Por favor, selecione auditorias da mesma empresa para comparação.")
+
     grupo_stats = [
         aud.get("stats_grupos") or calcular_stats_grupos(aud.get("respostas",{}), norma_comp)
         for aud in auditoria_sel
