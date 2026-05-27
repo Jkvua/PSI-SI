@@ -1,5 +1,6 @@
 import io
 import plotly.graph_objects as go
+import plotly.express as px
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -82,17 +83,22 @@ def _percentual_bytes(grupos_stats):
         ap = sum(s.values()) - s.get("Não Aplica",0)
         nomes.append(g.split(" - ")[0])
         pcts.append(round(s.get("Conforme",0)/ap*100,1) if ap else 0)
-    cores = ["#22c55e" if p>=70 else "#f59e0b" if p>=40 else "#ef4444" for p in pcts]
+
+    paletas = px.colors.qualitative.Plotly
+    cores = [paletas[i % len(paletas)] for i in range(len(nomes))]
+
     fig = go.Figure(go.Bar(
         x=pcts, y=nomes, orientation='h',
         marker=dict(color=cores),
         text=[f"{p}%" for p in pcts], textposition='inside',
         textfont=dict(color="white", size=11),
     ))
-    fig.add_vline(x=70, line_dash="dash", line_color="#94a3b8",
-                  annotation_text="Meta 70%", annotation_font_color="#64748b")
+    fig.add_vline(x=95, line_dash="dash", line_color="#94a3b8",
+                  annotation_text="Meta 95%", annotation_font_color="#64748b")
+    
     fig.update_layout(title="% Conformidade por Grupo", height=max(250, len(nomes)*38+60),
                       xaxis=dict(range=[0,110]), margin=dict(t=40,b=20,l=10,r=60))
+    
     return _chart_bytes(fig)
 
 
@@ -199,11 +205,12 @@ def _status_style(status, em_and, estilos):
 
 def gerar_pdf(aud, stats, grupos_stats, controles_dict,
               grupos_exibir=None, aud_anterior=None):
-    """
-    Retorna bytes do PDF gerado.
-    grupos_exibir: dict subconjunto de controles_dict (None = todos)
-    aud_anterior: dict da auditoria anterior para comparativo (opcional)
-    """
+    
+    if aud_anterior:
+        if aud.get("empresa") != aud_anterior.get("empresa"):
+            aud_anterior = None
+            print("Aviso: Não pode comparar auditorias de empresas diferentes.")
+
     buffer = io.BytesIO()
     norma = aud.get("norma","27001")
     pct = round(stats.get("Conforme",0) /
@@ -322,7 +329,7 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         h_pct = max(5.5*cm, len(grupos_stats)*1.1*cm + 1.5*cm)
         img_pct = Image(io.BytesIO(_percentual_bytes(grupos_stats)), width=W, height=h_pct)
         story.append(img_pct)
-        story.append(Paragraph("Percentual de conformidade por grupo (linha vermelha = meta 70%)", es["caption"]))
+        story.append(Paragraph("Percentual de conformidade meta acima de 95%", es["caption"]))
         story.append(Spacer(1, 0.2*cm))
     except Exception as e:
         story.append(Paragraph(f"[Gráfico indisponível: {e}]", es["body"]))
@@ -430,7 +437,6 @@ def gerar_pdf(aud, stats, grupos_stats, controles_dict,
         story.append(KeepTogether([t_ctrl]))
         story.append(Spacer(1, 0.4*cm))
 
-    # ── NÃO CONFORMIDADES ────────────────────────────────────────────────────
     nc_list = []
     for grupo, lista in exibir.items():
         for codigo, nome in lista:
