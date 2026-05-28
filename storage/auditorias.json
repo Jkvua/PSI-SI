@@ -2673,5 +2673,1634 @@
     "usuario_id": "6a1451a8a90df811d7694c31",
     "id": "20260526091414",
     "criado_em": "2026-05-26T09:14:14.734388"
+  },
+  {
+    "norma": "27001",
+    "empresa": "Prefeitura de Araquari",
+    "auditor": "Gabriela Schubert",
+    "data_auditoria": "2026-05-26 19:03:56",
+    "cenario": "Avaliação da TI",
+    "respostas": {
+      "5.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.2": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.4": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.7": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.9": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.11": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "5.12": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.14": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.15": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "5.16": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.17": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.18": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.19": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.20": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.21": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "5.22": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.23": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.24": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.25": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.26": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.27": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.28": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.29": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.30": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "5.31": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "5.32": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.33": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.34": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.35": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.36": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.37": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.12": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.14": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.12": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.14": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.15": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.16": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.17": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.18": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.19": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.20": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.21": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.22": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.23": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.24": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.25": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.26": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.27": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.28": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.29": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.30": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.31": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.32": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.33": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.34": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      }
+    },
+    "stats_total": {
+      "Conforme": 10,
+      "Não Conforme": 6,
+      "Em Andamento": 3,
+      "Não Aplica": 77
+    },
+    "stats_grupos": {
+      "5 - Controles Organizacionais": {
+        "Conforme": 10,
+        "Não Conforme": 6,
+        "Em Andamento": 3,
+        "Não Aplica": 21
+      },
+      "6 - Controles de Pessoas": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 8
+      },
+      "7 - Controles Físicos": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 14
+      },
+      "8 - Controles Tecnológicos": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 34
+      }
+    },
+    "usuario": "Gabriela",
+    "usuario_id": "6a15875a2c1f099bbaa9fa82",
+    "id": "20260526190356",
+    "criado_em": "2026-05-26T19:03:56.663998"
+  },
+  {
+    "norma": "27701",
+    "empresa": "Prefeitura de Araquari",
+    "auditor": "Gabriela Schubert",
+    "data_auditoria": "2026-05-27 20:02:26",
+    "cenario": "Avaliação da TI",
+    "respostas": {
+      "A.1.2.2": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.3": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.4": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.5": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "A.1.2.6": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.3.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      }
+    },
+    "stats_total": {
+      "Conforme": 3,
+      "Não Conforme": 2,
+      "Em Andamento": 1,
+      "Não Aplica": 44
+    },
+    "stats_grupos": {
+      "A.1 - Controladores: Condições para Coleta e Tratamento": {
+        "Conforme": 3,
+        "Não Conforme": 2,
+        "Em Andamento": 1,
+        "Não Aplica": 3
+      },
+      "A.2 - Controladores: Obrigações para Titulares": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 10
+      },
+      "A.3 - Controladores: Privacidade por Design": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 9
+      },
+      "A.4 - Controladores: Compartilhamento e Transferência": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 4
+      },
+      "A.5 - Operadores: Condições para Coleta e Tratamento": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 6
+      },
+      "A.6 - Operadores: Obrigações para Titulares": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 1
+      },
+      "A.7 - Operadores: Privacidade por Design": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 3
+      },
+      "A.8 - Operadores: Compartilhamento e Transferência": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 8
+      }
+    },
+    "usuario": "Gabriela",
+    "usuario_id": "6a15875a2c1f099bbaa9fa82",
+    "id": "20260527200226",
+    "criado_em": "2026-05-27T20:02:26.952812"
+  },
+  {
+    "norma": "27701",
+    "empresa": "Sampaio",
+    "auditor": "Gabriela Schubert",
+    "data_auditoria": "2026-05-28 11:19:01",
+    "cenario": "Avaliação da TI",
+    "respostas": {
+      "A.1.2.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.3": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.5": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "A.1.2.6": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.3.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      }
+    },
+    "stats_total": {
+      "Conforme": 2,
+      "Não Conforme": 1,
+      "Em Andamento": 1,
+      "Não Aplica": 46
+    },
+    "stats_grupos": {
+      "A.1 - Controladores: Condições para Coleta e Tratamento": {
+        "Conforme": 2,
+        "Não Conforme": 1,
+        "Em Andamento": 1,
+        "Não Aplica": 5
+      },
+      "A.2 - Controladores: Obrigações para Titulares": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 10
+      },
+      "A.3 - Controladores: Privacidade por Design": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 9
+      },
+      "A.4 - Controladores: Compartilhamento e Transferência": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 4
+      },
+      "A.5 - Operadores: Condições para Coleta e Tratamento": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 6
+      },
+      "A.6 - Operadores: Obrigações para Titulares": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 1
+      },
+      "A.7 - Operadores: Privacidade por Design": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 3
+      },
+      "A.8 - Operadores: Compartilhamento e Transferência": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 8
+      }
+    },
+    "usuario": "Gabriela",
+    "usuario_id": "6a15875a2c1f099bbaa9fa82",
+    "id": "20260528111901",
+    "criado_em": "2026-05-28T11:19:01.996346"
+  },
+  {
+    "norma": "27001",
+    "empresa": "Sampaio",
+    "auditor": "Gabriela Schubert",
+    "data_auditoria": "2026-05-28 11:22:58",
+    "cenario": "Avaliação da TI",
+    "respostas": {
+      "5.1": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.3": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.12": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.14": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.15": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.16": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.17": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.18": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.19": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.20": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.21": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.22": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.23": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.24": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.25": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.26": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.27": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.28": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "5.29": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.30": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.31": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.32": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.33": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.34": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "5.35": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "5.36": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "5.37": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "6.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "6.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.12": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "7.14": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.1": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.12": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.13": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.14": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.15": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.16": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.17": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.18": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.19": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.20": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.21": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.22": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.23": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.24": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.25": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.26": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.27": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.28": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.29": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.30": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.31": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.32": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.33": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "8.34": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      }
+    },
+    "stats_total": {
+      "Conforme": 2,
+      "Não Conforme": 4,
+      "Em Andamento": 2,
+      "Não Aplica": 87
+    },
+    "stats_grupos": {
+      "5 - Controles Organizacionais": {
+        "Conforme": 2,
+        "Não Conforme": 4,
+        "Em Andamento": 2,
+        "Não Aplica": 31
+      },
+      "6 - Controles de Pessoas": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 8
+      },
+      "7 - Controles Físicos": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 14
+      },
+      "8 - Controles Tecnológicos": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 34
+      }
+    },
+    "usuario": "Gabriela",
+    "usuario_id": "6a15875a2c1f099bbaa9fa82",
+    "id": "20260528112258",
+    "criado_em": "2026-05-28T11:22:58.284097"
+  },
+  {
+    "norma": "27701",
+    "empresa": "Sampaio",
+    "auditor": "Gabriela Schubert",
+    "data_auditoria": "2026-05-28 11:55:17",
+    "cenario": "Avaliação da TI",
+    "respostas": {
+      "A.1.2.2": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.3": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.4": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "A.1.2.5": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.6": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.2.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.2.9": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "A.1.3.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.4": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "A.1.3.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.6": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.3.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.10": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.3.11": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.2": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.4.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.4": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "A.1.4.5": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "A.1.4.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.7": {
+        "status": "Não Conforme",
+        "em_andamento": true
+      },
+      "A.1.4.8": {
+        "status": "Não Conforme",
+        "em_andamento": false
+      },
+      "A.1.4.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.4.10": {
+        "status": "Conforme",
+        "em_andamento": false
+      },
+      "A.1.5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.1.5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.2.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.3.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.4.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.2": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.3": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.4": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.5": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.6": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.7": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.8": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      },
+      "A.2.5.9": {
+        "status": "Não Aplica",
+        "em_andamento": false
+      }
+    },
+    "stats_total": {
+      "Conforme": 6,
+      "Não Conforme": 8,
+      "Em Andamento": 4,
+      "Não Aplica": 35
+    },
+    "stats_grupos": {
+      "A.1 - Controladores: Condições para Coleta e Tratamento": {
+        "Conforme": 3,
+        "Não Conforme": 3,
+        "Em Andamento": 2,
+        "Não Aplica": 2
+      },
+      "A.2 - Controladores: Obrigações para Titulares": {
+        "Conforme": 1,
+        "Não Conforme": 1,
+        "Em Andamento": 0,
+        "Não Aplica": 8
+      },
+      "A.3 - Controladores: Privacidade por Design": {
+        "Conforme": 2,
+        "Não Conforme": 4,
+        "Em Andamento": 2,
+        "Não Aplica": 3
+      },
+      "A.4 - Controladores: Compartilhamento e Transferência": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 4
+      },
+      "A.5 - Operadores: Condições para Coleta e Tratamento": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 6
+      },
+      "A.6 - Operadores: Obrigações para Titulares": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 1
+      },
+      "A.7 - Operadores: Privacidade por Design": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 3
+      },
+      "A.8 - Operadores: Compartilhamento e Transferência": {
+        "Conforme": 0,
+        "Não Conforme": 0,
+        "Em Andamento": 0,
+        "Não Aplica": 8
+      }
+    },
+    "usuario": "Gabriela",
+    "usuario_id": "6a15875a2c1f099bbaa9fa82",
+    "id": "20260528115517",
+    "criado_em": "2026-05-28T11:55:17.347819"
   }
 ]
